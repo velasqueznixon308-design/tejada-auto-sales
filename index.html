@@ -3,58 +3,72 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autos usados en Dover, DE | Tejada Auto Sales</title>
+    <title>Tejada Auto Sales | Autos usados en Dover, Delaware</title>
     <meta
       name="description"
-      content="Autos usados en Dover, DE con revisión, papeles al día y financiamiento. Consulta por WhatsApp y compra con tranquilidad."
+      content="Encuentra autos usados en Dover, Delaware. Consulta el inventario actual y visita Tejada Auto Sales en 4024N Dupont Hwy."
     />
-    <meta property="og:title" content="Tejada Auto Sales | Autos usados en Dover" />
+    <meta property="og:title" content="Tejada Auto Sales | Dover, Delaware" />
     <meta
       property="og:description"
-      content="Autos usados en Dover, DE con revisión, papeles al día y financiamiento. Escríbenos por WhatsApp."
+      content="Consulta por autos disponibles y visita Tejada Auto Sales en Dover, Delaware."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/tejadas-logo.jpg" />
-    <meta name="theme-color" content="#0a1c2c" />
+    <meta property="og:image" content="https://tejada-auto-sales.vercel.app/assets/tejadas-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f4f2e9" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --navy-900: #081a2c;
-        --navy-800: #0d2238;
-        --navy-700: #12324f;
-        --blue-600: #0f6fa5;
-        --blue-500: #1f93d9;
-        --blue-300: #a8def7;
-        --teal-700: #075e54;
-        --teal-600: #0d7a6b;
-        --gray-50: #f6f8fb;
-        --gray-100: #edf2f7;
-        --gray-200: #dfe9f2;
-        --gray-500: #5a6977;
-        --gray-700: #233242;
-        --black: #101820;
+        color-scheme: light;
+        --paper: #f4f2e9;
         --white: #ffffff;
-        --shadow: 0 20px 50px rgba(13, 34, 56, 0.12);
-        --radius: 22px;
+        --ink: #091923;
+        --ink-soft: #163242;
+        --blue: #168fe5;
+        --blue-dark: #0c5f9c;
+        --green: #168c59;
+        --text-muted: #43515a;
+        --page-width: 1320px;
+        --page-gutter: clamp(1.25rem, 5vw, 5rem);
+        --step-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+        --step-lead: clamp(1.2rem, 1.08rem + 0.65vw, 1.65rem);
+        --step-heading: clamp(2.4rem, 1.35rem + 4vw, 5.25rem);
       }
 
-      * { box-sizing: border-box; }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 1rem;
       }
 
       body {
         margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: var(--gray-50);
-        color: var(--gray-700);
-        line-height: 1.6;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Hanken Grotesk", Arial, sans-serif;
+        font-size: var(--step-body);
+        line-height: 1.5;
         overflow-x: hidden;
+      }
+
+      img,
+      svg {
+        display: block;
       }
 
       img {
         max-width: 100%;
-        display: block;
       }
 
       a {
@@ -62,956 +76,1268 @@
         text-decoration: none;
       }
 
-      button {
+      button,
+      select {
         font: inherit;
       }
 
+      a:focus-visible,
+      button:focus-visible,
+      select:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #f5b700;
+        outline-offset: 4px;
+      }
+
       .container {
-        width: min(1120px, calc(100% - 1.5rem));
-        margin: 0 auto;
+        width: min(var(--page-width), calc(100% - var(--page-gutter) * 2));
+        margin-inline: auto;
       }
 
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background: rgba(8, 26, 44, 0.96);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      .site-header {
+        position: absolute;
+        inset: 0 0 auto;
+        z-index: 5;
+        color: var(--ink);
       }
 
-      .topbar-inner {
+      .header-inner {
+        min-height: 112px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-height: 72px;
-        gap: 0.75rem;
+        gap: 2rem;
+      }
+
+      .brand {
+        display: block;
+        width: 174px;
+        height: 87px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        background: var(--ink);
       }
 
       .brand img {
-        width: 172px;
-        height: auto;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
+        object-position: center;
       }
 
-      .desktop-actions {
-        display: none;
+      .main-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(1rem, 2.5vw, 2.5rem);
+        margin-left: auto;
       }
 
-      .btn,
-      .btn-secondary,
-      .floating-whatsapp {
+      .main-nav a {
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 160ms ease;
+      }
+
+      .main-nav a:hover {
+        color: var(--blue-dark);
+      }
+
+      .button {
+        min-height: 52px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.55rem;
-        border-radius: 999px;
-        border: none;
+        gap: 0.75rem;
+        padding: 0.8rem 1.2rem;
+        border: 0;
+        background: var(--green);
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        transition: background-color 160ms ease, transform 160ms ease;
+      }
+
+      .button:hover {
+        background: #0f7147;
+        transform: translateY(-2px);
+      }
+
+      .button svg {
+        width: 21px;
+        height: 21px;
+        flex: 0 0 auto;
+      }
+
+      .button-dark {
+        background: var(--ink);
+      }
+
+      .button-dark:hover {
+        background: var(--ink-soft);
+      }
+
+      .header-cta {
+        min-height: 46px;
+        padding-inline: 1rem;
+        font-size: 0.94rem;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 760px;
+        height: 100svh;
+        overflow: hidden;
+      }
+
+      .hero-top,
+      .hero-bottom {
+        position: absolute;
+        inset-inline: 0;
+        height: 50%;
+      }
+
+      .hero-top {
+        inset-block-start: 0;
+        background: var(--paper);
+      }
+
+      .hero-bottom {
+        inset-block-end: 0;
+        background: var(--blue);
+      }
+
+      .hero-title {
+        position: absolute;
+        z-index: 1;
+        inset-inline: var(--page-gutter);
+        top: 48%;
+        width: min(var(--page-width), calc(100% - var(--page-gutter) * 2));
+        margin: 0 auto;
+        transform: translateY(-50%);
+        font-size: clamp(4.5rem, 10.5vw, 9.1rem);
+        font-weight: 500;
+        letter-spacing: -0.075em;
+        line-height: 0.82;
+        text-transform: uppercase;
+      }
+
+      .hero-line {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        max-width: 100%;
+        white-space: nowrap;
+      }
+
+      .hero-line:first-child {
+        color: var(--blue-dark);
+      }
+
+      .hero-line:last-child {
+        margin-top: 0.08em;
+        color: var(--ink);
+      }
+
+      .hero-photo {
+        width: 2.5em;
+        height: 0.74em;
+        margin-inline: 0.12em 0.2em;
+        overflow: hidden;
+        flex: 0 0 auto;
+      }
+
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 59%;
+      }
+
+      .hero-note {
+        position: absolute;
+        z-index: 2;
+        inset-inline-start: max(var(--page-gutter), calc((100% - var(--page-width)) / 2));
+        bottom: clamp(2rem, 8vh, 6rem);
+        width: min(560px, calc(100% - var(--page-gutter) * 2));
+        color: var(--white);
+      }
+
+      .hero-note p {
+        max-width: 46ch;
+        margin: 0 0 1.35rem;
+        font-size: var(--step-lead);
+        line-height: 1.28;
+      }
+
+      .hero-address {
+        position: absolute;
+        right: var(--page-gutter);
+        bottom: clamp(2.4rem, 8vh, 6.4rem);
+        margin: 0;
+        color: var(--ink);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .section {
+        padding-block: clamp(5.5rem, 12vw, 10.5rem);
+      }
+
+      .section h2 {
+        max-width: 12ch;
+        margin: 0;
+        font-size: var(--step-heading);
+        font-weight: 500;
+        letter-spacing: -0.065em;
+        line-height: 0.96;
+      }
+
+      .section p {
+        margin-block: 0;
+      }
+
+      .inventory {
+        background: var(--paper);
+      }
+
+      .inventory-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+        align-items: center;
+        gap: clamp(3rem, 10vw, 10rem);
+      }
+
+      .inventory-copy p {
+        max-width: 48ch;
+        margin-top: 1.5rem;
+        color: var(--text-muted);
+        font-size: var(--step-lead);
+      }
+
+      .inquiry {
+        padding: clamp(1.5rem, 4vw, 3rem);
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .inquiry h3 {
+        max-width: 15ch;
+        margin: 0;
+        font-size: clamp(1.8rem, 1.4rem + 1.7vw, 3rem);
+        font-weight: 500;
+        letter-spacing: -0.045em;
+        line-height: 1.05;
+      }
+
+      .inquiry p {
+        max-width: 42ch;
+        margin-top: 1rem;
+        color: #e1e8ec;
+      }
+
+      .inquiry label {
+        display: block;
+        margin-top: 2rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .inquiry select {
+        width: 100%;
+        min-height: 54px;
+        margin-top: 0.5rem;
+        padding: 0.7rem 2rem 0.7rem 0;
+        border: 0;
+        border-bottom: 2px solid var(--blue);
+        border-radius: 0;
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .inquiry .button {
+        width: 100%;
+        margin-top: 1.5rem;
+      }
+
+      .inquiry-note {
+        display: block;
+        margin-top: 1rem;
+        color: #d0dce2;
+        font-size: 0.9rem;
+      }
+
+      .process {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: clamp(3rem, 10vw, 9rem);
+      }
+
+      .process-intro p {
+        max-width: 38ch;
+        margin-top: 1.5rem;
+        color: #d9e2e7;
+        font-size: var(--step-lead);
+      }
+
+      .steps {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .steps li {
+        display: block;
+        padding-block: 1.5rem;
+      }
+
+      .steps h3 {
+        margin: 0;
+        font-size: clamp(1.35rem, 1.15rem + 0.9vw, 2rem);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+      }
+
+      .steps p {
+        max-width: 48ch;
+        margin-top: 0.45rem;
+        color: #d9e2e7;
+      }
+
+      .about {
+        background: var(--blue);
+        color: var(--ink);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+        align-items: end;
+        gap: clamp(3rem, 10vw, 9rem);
+      }
+
+      .about-copy p {
+        max-width: 48ch;
+        margin-top: 1.5rem;
+        font-size: var(--step-lead);
+      }
+
+      .about-detail {
+        padding-left: clamp(1rem, 3vw, 3rem);
+      }
+
+      .about-detail p + p {
+        margin-top: 1rem;
+      }
+
+      .about-detail strong {
+        font-weight: 600;
+      }
+
+      .about-detail a {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.18em;
+      }
+
+      .faq {
+        background: var(--paper);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(3rem, 10vw, 9rem);
+      }
+
+      .faq-list details {
+        padding-block: 1.25rem;
+      }
+
+      .faq-list summary {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        font-weight: 700;
+        font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.7rem);
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        list-style: none;
       }
 
-      .btn:focus-visible,
-      .btn-secondary:focus-visible,
-      .floating-whatsapp:focus-visible,
-      .link-button:focus-visible,
-      .nav-cta:focus-visible {
-        outline: 3px solid #ffd166;
-        outline-offset: 3px;
+      .faq-list summary::-webkit-details-marker {
+        display: none;
       }
 
-      .btn {
-        background: var(--teal-700);
+      .faq-list summary::after {
+        content: "+";
+        color: var(--blue-dark);
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .faq-list details[open] summary::after {
+        content: "−";
+      }
+
+      .faq-list details p {
+        max-width: 58ch;
+        padding: 0.8rem 2rem 0 0;
+        color: var(--text-muted);
+      }
+
+      .location {
+        background: var(--white);
+      }
+
+      .location-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: clamp(2.5rem, 6vw, 5rem);
+      }
+
+      .location-heading p {
+        max-width: 36ch;
+        color: var(--text-muted);
+        font-size: var(--step-lead);
+      }
+
+      .location-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+        gap: clamp(2rem, 6vw, 5rem);
+        align-items: start;
+      }
+
+      .map-frame {
+        width: 100%;
+        min-height: 390px;
+        aspect-ratio: 1.35;
+        background: #d8e1e5;
+      }
+
+      .map-frame iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 390px;
+        border: 0;
+      }
+
+      .location-info {
+        padding-top: 0.5rem;
+      }
+
+      .location-info h3 {
+        max-width: 14ch;
+        margin: 0;
+        font-size: clamp(2rem, 1.4rem + 2.5vw, 3.7rem);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.98;
+      }
+
+      .location-info address {
+        margin-top: 1.5rem;
+        font-size: var(--step-lead);
+        font-style: normal;
+      }
+
+      .location-info p {
+        margin-top: 1rem;
+        color: var(--text-muted);
+      }
+
+      .location-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+      }
+
+      .location-actions .button-secondary {
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1.1rem;
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background-color 160ms ease;
+      }
+
+      .location-actions .button-secondary:hover {
+        background: #e5e2d7;
+      }
+
+      .local-views {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr 1fr;
+        gap: 1rem;
+        margin-top: clamp(3rem, 7vw, 6rem);
+      }
+
+      .local-views figure {
+        margin: 0;
+      }
+
+      .local-views img {
+        width: 100%;
+        height: clamp(160px, 20vw, 280px);
+        object-fit: cover;
+      }
+
+      .local-views figure:nth-child(2) img {
+        object-position: center 52%;
+      }
+
+      .local-views figcaption {
+        margin-top: 0.65rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .final-cta {
+        padding-block: clamp(5rem, 12vw, 10rem);
+        background: var(--ink);
         color: var(--white);
-        padding: 0.9rem 1.2rem;
-        box-shadow: 0 12px 24px rgba(7, 94, 84, 0.2);
       }
 
-      .btn:hover,
-      .btn-secondary:hover,
-      .floating-whatsapp:hover {
-        transform: translateY(-1px);
+      .final-cta-inner {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 3rem;
       }
 
-      .btn-secondary {
-        background: rgba(255, 255, 255, 0.08);
+      .final-cta h2 {
+        max-width: 10ch;
+        margin: 0;
+        font-size: clamp(3rem, 1.8rem + 5vw, 7rem);
+        font-weight: 500;
+        letter-spacing: -0.07em;
+        line-height: 0.9;
+      }
+
+      .final-cta p {
+        max-width: 36ch;
+        margin-top: 1rem;
+        color: #d9e2e7;
+      }
+
+      .final-cta .button {
+        flex: 0 0 auto;
+      }
+
+      .site-footer {
+        padding-block: 3rem 2rem;
+        background: var(--ink);
         color: var(--white);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        padding: 0.8rem 1rem;
+      }
+
+      .footer-main {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .footer-brand {
+        max-width: 28ch;
+        font-size: clamp(1.8rem, 1.3rem + 2vw, 3rem);
+        font-weight: 500;
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        color: #e3edf2;
+      }
+
+      .footer-links a:hover {
+        color: var(--blue);
+      }
+
+      .photo-credits {
+        max-width: 100ch;
+        padding-top: 1.5rem;
+        color: #d9e2e7;
+        font-size: 0.82rem;
+      }
+
+      .photo-credits p {
+        margin: 0;
+      }
+
+      .photo-credits p + p {
+        margin-top: 0.35rem;
+      }
+
+      .photo-credits a {
+        text-decoration: underline;
+        text-underline-offset: 0.16em;
+      }
+
+      .copyright {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2rem;
+        color: #d9e2e7;
+        font-size: 0.88rem;
       }
 
       .floating-whatsapp {
         position: fixed;
-        right: max(0.8rem, env(safe-area-inset-right));
-        bottom: max(0.8rem, calc(env(safe-area-inset-bottom) + 0.4rem));
-        z-index: 30;
-        background: var(--teal-700);
+        z-index: 10;
+        right: max(1.25rem, env(safe-area-inset-right));
+        bottom: max(1.25rem, env(safe-area-inset-bottom));
+        width: 62px;
+        height: 62px;
+        display: grid;
+        place-items: center;
+        background: var(--green);
         color: var(--white);
-        padding: 0.85rem 1rem;
-        box-shadow: 0 18px 24px rgba(7, 94, 84, 0.26);
-      }
-
-      .section {
-        padding: 4rem 0;
-      }
-
-      .hero {
-        background: linear-gradient(135deg, #071923 0%, #102d42 38%, #153d5a 100%);
-        color: var(--white);
-        padding-bottom: 4rem;
-      }
-
-      .hero-grid {
-        display: grid;
-        gap: 1.25rem;
-        padding-top: 1.5rem;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 999px;
-        padding: 0.45rem 0.8rem;
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--blue-300);
-      }
-
-      .hero-brand-shell {
-        display: block;
-        background: rgba(0, 0, 0, 0.82);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: 24px;
-        padding: 1.2rem 0.8rem 0.9rem;
-        box-shadow: 0 28px 40px rgba(2, 10, 16, 0.28);
-        margin: 0.8rem 0 1.1rem;
-      }
-
-      .hero-logo {
-        display: block;
-        width: min(100%, 720px);
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
-        filter: drop-shadow(0 12px 24px rgba(70, 170, 255, 0.18));
-      }
-
-      .hero h1 {
-        font-size: clamp(2.4rem, 6vw, 4.4rem);
-        line-height: 1.02;
-        margin: 0.8rem 0 1rem;
-        letter-spacing: -0.05em;
-      }
-
-      .hero h1 span {
-        color: var(--blue-300);
-      }
-
-      .hero-copy {
-        font-size: 1.05rem;
-        color: rgba(255, 255, 255, 0.84);
-        max-width: 620px;
-      }
-
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.85rem;
-        margin-top: 1.3rem;
-      }
-
-      .mobile-note {
-        margin-top: 0.85rem;
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 0.9rem;
-      }
-
-      .hero-card {
-        background: rgba(0, 0, 0, 0.82);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 28px 60px rgba(2, 10, 16, 0.28);
-      }
-
-      .hero-photo {
-        width: 100%;
-        min-height: 290px;
-        background: radial-gradient(circle at top, rgba(31,147,217,0.2), rgba(8,26,44,0.9) 52%, rgba(0,0,0,0.95));
-        display: grid;
-        place-items: center;
-        padding: 1rem;
-      }
-
-      .placeholder-photo {
-        width: 100%;
-        height: 100%;
-        min-height: 230px;
-        border-radius: 18px;
-        border: 1px dashed rgba(255,255,255,0.35);
-        display: grid;
-        place-items: center;
-        text-align: center;
-        color: rgba(255,255,255,0.78);
-        font-weight: 700;
-        background: rgba(255,255,255,0.03);
-        padding: 1rem;
-      }
-
-      .trust-strip {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.8rem;
-        margin-top: 1.5rem;
-      }
-
-      .trust-item {
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 18px;
-        padding: 0.9rem 0.8rem;
-        text-align: center;
-      }
-
-      .trust-item strong {
-        display: block;
-        font-size: 1.1rem;
-        margin-bottom: 0.2rem;
-      }
-
-      .section-head {
-        margin-bottom: 1.5rem;
-      }
-
-      .section-head h2 {
-        font-size: clamp(2rem, 4vw, 2.7rem);
-        line-height: 1.2;
-        margin: 0 0 0.7rem;
-        letter-spacing: -0.04em;
-        color: var(--black);
-      }
-
-      .section-head p {
-        margin: 0;
-        color: var(--gray-500);
-        max-width: 680px;
-      }
-
-      .inventory {
-        padding-top: 4.5rem;
-      }
-
-      .vehicle-grid {
-        display: grid;
-        gap: 1.1rem;
-      }
-
-      .vehicle-card {
-        background: var(--white);
-        border: 1px solid var(--gray-200);
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 12px 30px rgba(15, 34, 56, 0.05);
-      }
-
-      .vehicle-photo {
-        min-height: 230px;
-        background: linear-gradient(180deg, #eaf2f8 0%, #dfe9f2 100%);
-        border-bottom: 1px solid var(--gray-200);
-        padding: 1rem;
-        display: grid;
-        place-items: center;
-      }
-
-      .vehicle-photo .placeholder-photo {
-        min-height: 180px;
-        color: var(--gray-500);
-        border-color: rgba(35,50,66,0.25);
-        background: rgba(255,255,255,0.5);
-      }
-
-      .vehicle-body {
-        padding: 1.1rem 1rem 1.2rem;
-      }
-
-      .vehicle-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
-        margin-bottom: 0.75rem;
-        color: var(--gray-500);
-        font-size: 0.85rem;
-      }
-
-      .vehicle-title {
-        margin: 0 0 0.6rem;
-        font-size: 1.5rem;
-        letter-spacing: -0.04em;
-      }
-
-      .specs {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.55rem;
-        padding: 0.8rem 0;
-        border-top: 1px solid var(--gray-100);
-        border-bottom: 1px solid var(--gray-100);
-        color: var(--gray-500);
-        font-size: 0.9rem;
-      }
-
-      .vehicle-price {
-        font-size: clamp(1.8rem, 4vw, 2.3rem);
-        font-weight: 800;
-        letter-spacing: -0.04em;
-        margin: 0.8rem 0 1rem;
-        color: var(--navy-900);
-      }
-
-      .vehicle-actions {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-      }
-
-      .link-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--gray-200);
-        background: var(--white);
-        color: var(--navy-900);
-        border-radius: 999px;
-        padding: 0.75rem 1rem;
-        font-weight: 700;
-      }
-
-      .steps,
-      .why-grid,
-      .faq-grid,
-      .about-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .step-card,
-      .why-card,
-      .faq-card,
-      .about-card,
-      .map-card,
-      .contact-card {
-        background: var(--white);
-        border: 1px solid var(--gray-200);
-        border-radius: var(--radius);
-        padding: 1.2rem;
-        box-shadow: 0 12px 30px rgba(15, 34, 56, 0.04);
-      }
-
-      .step-number {
-        width: 40px;
-        height: 40px;
-        display: grid;
-        place-items: center;
         border-radius: 50%;
-        background: rgba(15, 111, 165, 0.12);
-        color: var(--blue-600);
-        font-weight: 800;
-        margin-bottom: 0.85rem;
+        transition: background-color 160ms ease, transform 160ms ease;
       }
 
-      .why-card h3,
-      .faq-card h3,
-      .contact-card h3,
-      .about-card h3,
-      .step-card h3 {
-        margin: 0 0 0.55rem;
-        font-size: 1.2rem;
-        letter-spacing: -0.03em;
+      .floating-whatsapp:hover {
+        background: #0f7147;
+        transform: translateY(-3px);
       }
 
-      .why-card p,
-      .faq-card p,
-      .contact-card p,
-      .about-card p,
-      .step-card p {
-        margin: 0;
-        color: var(--gray-500);
+      .floating-whatsapp svg {
+        width: 32px;
+        height: 32px;
       }
 
-      .faq-card {
-        min-height: 100%;
-      }
-
-      .faq-question {
-        font-weight: 800;
-        color: var(--navy-900);
-        margin-bottom: 0.45rem;
-      }
-
-      .about-grid {
-        align-items: center;
-      }
-
-      .about-photo {
-        min-height: 260px;
-        border-radius: var(--radius);
-        background: linear-gradient(135deg, #dfeaf6, #edf5fc);
-        border: 1px solid var(--gray-200);
-        display: grid;
-        place-items: center;
-        padding: 1rem;
-      }
-
-      .about-photo .placeholder-photo {
-        min-height: 220px;
-        color: var(--gray-500);
-        border-color: rgba(35,50,66,0.25);
-        background: rgba(255,255,255,0.4);
-      }
-
-      .contact-grid {
-        margin-top: 1rem;
-      }
-
-      .map-card {
-        min-height: 260px;
-        background: linear-gradient(135deg, rgba(15, 111, 165, 0.1), rgba(7, 94, 84, 0.06));
-        display: grid;
-        place-items: center;
-        text-align: center;
-      }
-
-      .map-placeholder {
-        max-width: 540px;
-        width: 100%;
-        min-height: 180px;
-        border: 1px dashed rgba(35,50,66,0.25);
-        border-radius: 18px;
-        display: grid;
-        place-items: center;
-        background: rgba(255,255,255,0.4);
-        color: var(--gray-500);
-        font-weight: 700;
-      }
-
-      .contact-list {
-        list-style: none;
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
         padding: 0;
-        margin: 1rem 0 0;
-        display: grid;
-        gap: 0.75rem;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
-      .contact-list li {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        color: var(--gray-500);
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--teal-600);
-        display: inline-block;
-      }
-
-      footer {
-        background: var(--navy-900);
-        color: rgba(255,255,255,0.8);
-        padding: 2rem 0 5rem;
-      }
-
-      .footer-grid {
-        display: grid;
-        gap: 1.2rem;
-      }
-
-      .footer-col h3 {
-        margin: 0 0 0.7rem;
-        color: var(--white);
-        font-size: 1.1rem;
-      }
-
-      .footer-links {
-        display: grid;
-        gap: 0.55rem;
-      }
-
-      .legal-note {
-        color: rgba(255,255,255,0.72);
-        margin-top: 1rem;
-        font-size: 0.92rem;
-      }
-
-      @media (min-width: 640px) {
-        .trust-strip {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-
-        .vehicle-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .steps,
-        .why-grid,
-        .faq-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+      @media (min-width: 1440px) {
+        .hero-title {
+          left: 50%;
+          right: auto;
+          transform: translate(-50%, -50%);
         }
       }
 
-      @media (min-width: 768px) {
-        .desktop-actions {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
+      @media (max-width: 900px) {
+        .header-inner {
+          gap: 1.25rem;
         }
 
-        .hero-grid {
-          grid-template-columns: 1.05fr 0.95fr;
-          align-items: center;
-          min-height: 640px;
+        .main-nav {
+          gap: 1rem;
         }
 
+        .main-nav a {
+          font-size: 0.88rem;
+        }
+
+        .inventory-grid,
+        .process-grid,
         .about-grid,
-        .contact-grid {
+        .faq-grid,
+        .location-grid {
           grid-template-columns: 1fr 1fr;
-        }
-
-        .footer-grid {
-          grid-template-columns: 1.2fr 1fr 1fr;
+          gap: 3rem;
         }
       }
 
-      @media (min-width: 980px) {
-        .vehicle-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+      @media (max-width: 680px) {
+        :root {
+          --page-gutter: 1.25rem;
         }
 
-        .steps,
-        .why-grid,
-        .faq-grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-      }
-
-      @media (max-width: 767px) {
-        .topbar-inner {
-          min-height: 64px;
+        .header-inner {
+          min-height: 108px;
+          display: grid;
+          grid-template-columns: 1fr auto;
+          grid-template-rows: 70px 34px;
+          gap: 0;
+          padding-block: 0.35rem;
         }
 
-        .desktop-actions {
+        .brand {
+          width: 126px;
+          height: 63px;
+        }
+
+        .main-nav {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: space-between;
+          gap: 0.6rem;
+        }
+
+        .main-nav a {
+          font-size: 0.82rem;
+        }
+
+        .header-cta {
+          min-height: 42px;
+          padding-inline: 0.8rem;
+          font-size: 0.88rem;
+        }
+
+        .hero {
+          min-height: 690px;
+          height: 100svh;
+          max-height: 900px;
+        }
+
+        .hero-title {
+          top: 48%;
+          inset-inline: var(--page-gutter);
+          width: calc(100% - var(--page-gutter) * 2);
+          font-size: clamp(3.4rem, 13.5vw, 5.7rem);
+          letter-spacing: -0.08em;
+          line-height: 0.86;
+        }
+
+        .hero-line {
+          white-space: normal;
+        }
+
+        .hero-line:first-child {
+          max-width: 100%;
+        }
+
+        .hero-photo {
+          width: 2.2em;
+          height: 0.76em;
+          margin-inline: 0.08em;
+        }
+
+        .hero-note {
+          bottom: 4.3rem;
+          width: calc(100% - var(--page-gutter) * 2);
+        }
+
+        .hero-note p {
+          max-width: 36ch;
+          margin-bottom: 1rem;
+          font-size: 1.12rem;
+        }
+
+        .hero-note .button {
+          min-height: 48px;
+        }
+
+        .hero-address {
           display: none;
         }
 
-        .floating-whatsapp {
-          padding: 0.8rem 1rem;
+        .inventory-grid,
+        .process-grid,
+        .about-grid,
+        .faq-grid,
+        .location-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .inventory-copy p,
+        .process-intro p,
+        .about-copy p {
+          margin-top: 1.1rem;
+        }
+
+        .inquiry {
+          padding: 1.5rem;
+        }
+
+        .steps li {
+          grid-template-columns: 2.5rem 1fr;
+          gap: 0.75rem;
+          padding-block: 1.15rem;
+        }
+
+        .about-detail {
+          padding-left: 0;
+        }
+
+        .location-heading {
+          display: block;
+        }
+
+        .location-heading p {
+          margin-top: 1rem;
+        }
+
+        .map-frame {
+          min-width: 0;
+          min-height: 320px;
+          aspect-ratio: auto;
+        }
+
+        .map-frame iframe {
+          min-height: 320px;
+        }
+
+        .local-views {
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem 0.75rem;
+          margin-top: 3rem;
+        }
+
+        .local-views figure:first-child {
+          grid-column: 1 / -1;
+        }
+
+        .local-views img {
+          height: 180px;
+        }
+
+        .local-views figure:first-child img {
+          height: 230px;
+        }
+
+        .final-cta-inner {
+          display: block;
+        }
+
+        .final-cta .button {
+          margin-top: 1.5rem;
+        }
+
+        .footer-main {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .copyright {
+          display: block;
+        }
+
+        .copyright span {
+          display: block;
+          margin-top: 0.4rem;
+        }
+      }
+
+      @media (max-width: 370px) {
+        .brand {
+          width: 110px;
+          height: 55px;
+        }
+
+        .main-nav a {
+          font-size: 0.76rem;
+        }
+
+        .hero-title {
+          font-size: 13vw;
+        }
+
+        .location-actions .button,
+        .location-actions .button-secondary {
+          width: 100%;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        *, *::before, *::after {
-          animation: none !important;
-          transition: none !important;
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a href="#inicio" class="brand" aria-label="Tejada Auto Sales inicio">
-          <img src="assets/tejadas-logo.jpg" alt="Tejada Auto Sales logo" width="260" height="110" />
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#inicio" aria-label="Tejada Auto Sales, inicio">
+          <img src="assets/tejadas-logo.png" alt="Tejada Auto Sales" width="1774" height="887" />
         </a>
 
-        <div class="desktop-actions" aria-label="Acciones principales">
-          <a class="btn-secondary nav-cta" href="tel:+13022002071">Llamar</a>
-          <a class="btn nav-cta" href="https://wa.me/13022002071?text=Hola%2C%20vi%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n.%20" data-cta="header" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
-        </div>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="#autos">Autos</a>
+          <a href="#proceso">Cómo comprar</a>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#preguntas">Preguntas</a>
+        </nav>
+
+        <a
+          class="button header-cta"
+          href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles."
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="header"
+        >
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path
+              d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11.7 10.2c-.3-.6-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.5 4 6.1 5.4 3 .9 3.6.7 4.3.6.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5l-2.5-1.2c-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7l-1.1-2.4Z"
+              fill="currentColor"
+            />
+          </svg>
+          WhatsApp
+        </a>
       </div>
     </header>
 
     <main id="inicio">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <div class="eyebrow">Tejada Auto Sales • Dover, DE</div>
-            <div class="hero-brand-shell">
-              <img class="hero-logo" src="assets/tejadas-logo.jpg" alt="Tejada Auto Sales logo" />
-            </div>
-            <h1>Autos usados en <span>Dover</span>, con tranquilidad.</h1>
-            <p class="hero-copy">
-              Revisión mecánica, papeles al día y ayuda para comprar sin dudas. Si buscas un auto usado en Delaware,
-              hablamos por WhatsApp y te guiamos paso a paso.
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-top" aria-hidden="true"></div>
+        <div class="hero-bottom" aria-hidden="true"></div>
+
+        <h1 class="hero-title" id="hero-title">
+          <span class="hero-line">
+            Tu
+            <span class="hero-photo">
+              <img
+                src="assets/route-13-silver-lake.jpg"
+                alt="ruta por Dover"
+                width="1920"
+                height="1440"
+                fetchpriority="high"
+              />
+            </span>
+          </span>
+          <span class="hero-line">empieza aquí.</span>
+        </h1>
+
+        <div class="hero-note container">
+          <p>Autos usados en Dover, Delaware. Consulta qué hay disponible y encuentra el camino que sigue.</p>
+          <a
+            class="button"
+            href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles%20en%20Dover."
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta="hero"
+          >
+            Consultar inventario
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+          </a>
+        </div>
+
+        <p class="hero-address">4024N Dupont Hwy · Dover, DE</p>
+      </section>
+
+      <section class="section inventory" id="autos" aria-labelledby="inventory-title">
+        <div class="container inventory-grid">
+          <div class="inventory-copy">
+            <h2 id="inventory-title">El inventario cambia. Pregunta por lo que hay hoy.</h2>
+            <p>
+              Estamos actualizando los autos disponibles. Cuéntanos qué tipo de vehículo buscas y te compartimos
+              las opciones actuales por WhatsApp.
             </p>
-
-            <div class="cta-row">
-              <a
-                href="https://wa.me/13022002071?text=Hola%2C%20vi%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20su%20stock%20de%20autos%20usados%20en%20Dover."
-                class="btn"
-                data-cta="hero"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Escribir por WhatsApp
-              </a>
-              <a class="btn-secondary" href="tel:+13022002071" data-cta="hero-call">Llamar</a>
-            </div>
-
-            <p class="mobile-note">Respondemos en menos de 1 hora, de lunes a sábado.</p>
-
-            <div class="trust-strip" aria-label="Puntos de confianza">
-              <div class="trust-item">
-                <strong>Papeles</strong>
-                <span>al día</span>
-              </div>
-              <div class="trust-item">
-                <strong>Revisión</strong>
-                <span>mecánica</span>
-              </div>
-              <div class="trust-item">
-                <strong>Garantía</strong>
-                <span>en venta</span>
-              </div>
-              <div class="trust-item">
-                <strong>Financiamiento</strong>
-                <span>disponible</span>
-              </div>
-            </div>
           </div>
 
-          <div class="hero-card" aria-label="Foto del negocio o auto destacado">
-            <div class="hero-photo">
-              <div class="placeholder-photo">
-                FOTO REAL: [COMPLETAR: local o auto destacado]
-              </div>
-            </div>
-          </div>
+          <form class="inquiry" id="inventory-inquiry">
+            <h3>Vamos al grano.</h3>
+            <p>Elige qué te interesa y enviaremos tu consulta lista para continuar por WhatsApp.</p>
+            <label for="vehicle-interest">¿Qué tipo de auto buscas?</label>
+            <select id="vehicle-interest" name="vehicle-interest">
+              <option value="cualquier tipo de auto">Cualquier tipo</option>
+              <option value="un sedán">Sedán</option>
+              <option value="una SUV">SUV</option>
+              <option value="una pickup">Pickup</option>
+              <option value="explorar opciones">Aún estoy explorando</option>
+            </select>
+            <a
+              class="button"
+              id="inventory-whatsapp"
+              href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20cualquier%20tipo%20de%20auto%20disponible."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta="inventory"
+            >
+              Consultar opciones
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </a>
+            <small class="inquiry-note">La disponibilidad se confirma directamente con el equipo.</small>
+          </form>
         </div>
       </section>
 
-      <section class="section inventory" id="stock">
-        <div class="container">
-          <div class="section-head">
-            <h2>Autos destacados</h2>
-            <p>Estamos actualizando el stock disponible. Escríbenos por WhatsApp y te mostramos las opciones actuales.</p>
+      <section class="section process" id="proceso" aria-labelledby="process-title">
+        <div class="container process-grid">
+          <div class="process-intro">
+            <h2 id="process-title">Una compra clara, paso a paso.</h2>
+            <p>
+              Reúne la información que necesitas, revisa las opciones y coordina una visita antes de decidir.
+            </p>
           </div>
 
-          <div class="vehicle-grid">
-            <article class="vehicle-card" aria-label="Vehículo destacado 1">
-              <div class="vehicle-photo">
-                <div class="placeholder-photo">FOTO REAL: [COMPLETAR: marca, modelo, año, km]</div>
+          <ol class="steps">
+            <li>
+              <div>
+                <h3>Cuéntanos qué necesitas</h3>
+                <p>Escríbenos con el tipo de auto que buscas y las preguntas que quieres resolver.</p>
               </div>
-              <div class="vehicle-body">
-                <div class="vehicle-meta">
-                  <span>Vehículo destacado</span>
-                  <span>Disponible</span>
-                </div>
-                <h3 class="vehicle-title">[COMPLETAR: marca / modelo]</h3>
-                <div class="specs">
-                  <span>Año: [COMPLETAR]</span>
-                  <span>KM: [COMPLETAR]</span>
-                  <span>Transmisión: [COMPLETAR]</span>
-                  <span>Combustible: [COMPLETAR]</span>
-                </div>
-                <div class="vehicle-price">Precio: [COMPLETAR]</div>
-                <div class="vehicle-actions">
-                  <a
-                    class="btn"
-                    href="https://wa.me/13022002071?text=Hola%2C%20vi%20el%20veh%C3%ADculo%20destacado%20en%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cta="vehiculo-1"
-                  >
-                    Consultar por este auto
-                  </a>
-                </div>
+            </li>
+            <li>
+              <div>
+                <h3>Revisa los detalles</h3>
+                <p>Pregunta por disponibilidad, documentación, revisión mecánica y opciones de financiamiento.</p>
               </div>
-            </article>
-
-            <article class="vehicle-card" aria-label="Vehículo destacado 2">
-              <div class="vehicle-photo">
-                <div class="placeholder-photo">FOTO REAL: [COMPLETAR: marca, modelo, año, km]</div>
+            </li>
+            <li>
+              <div>
+                <h3>Coordina una visita</h3>
+                <p>Llama o escríbenos para confirmar los detalles y visitar el local en Dover.</p>
               </div>
-              <div class="vehicle-body">
-                <div class="vehicle-meta">
-                  <span>Vehículo destacado</span>
-                  <span>Disponible</span>
-                </div>
-                <h3 class="vehicle-title">[COMPLETAR: marca / modelo]</h3>
-                <div class="specs">
-                  <span>Año: [COMPLETAR]</span>
-                  <span>KM: [COMPLETAR]</span>
-                  <span>Transmisión: [COMPLETAR]</span>
-                  <span>Combustible: [COMPLETAR]</span>
-                </div>
-                <div class="vehicle-price">Precio: [COMPLETAR]</div>
-                <div class="vehicle-actions">
-                  <a
-                    class="btn"
-                    href="https://wa.me/13022002071?text=Hola%2C%20vi%20otro%20veh%C3%ADculo%20de%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cta="vehiculo-2"
-                  >
-                    Consultar por este auto
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <article class="vehicle-card" aria-label="Vehículo destacado 3">
-              <div class="vehicle-photo">
-                <div class="placeholder-photo">FOTO REAL: [COMPLETAR: marca, modelo, año, km]</div>
-              </div>
-              <div class="vehicle-body">
-                <div class="vehicle-meta">
-                  <span>Vehículo destacado</span>
-                  <span>Disponible</span>
-                </div>
-                <h3 class="vehicle-title">[COMPLETAR: marca / modelo]</h3>
-                <div class="specs">
-                  <span>Año: [COMPLETAR]</span>
-                  <span>KM: [COMPLETAR]</span>
-                  <span>Transmisión: [COMPLETAR]</span>
-                  <span>Combustible: [COMPLETAR]</span>
-                </div>
-                <div class="vehicle-price">Precio: [COMPLETAR]</div>
-                <div class="vehicle-actions">
-                  <a
-                    class="btn"
-                    href="https://wa.me/13022002071?text=Hola%2C%20me%20interesa%20uno%20de%20sus%20autos%20destacados%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cta="vehiculo-3"
-                  >
-                    Consultar por este auto
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
+            </li>
+          </ol>
         </div>
       </section>
 
-      <section class="section" id="como-comprar">
-        <div class="container">
-          <div class="section-head">
-            <h2>Cómo comprar</h2>
-            <p>Te ayudamos a elegir con calma, revisar la documentación y decidir sin complicaciones.</p>
-          </div>
-
-          <div class="steps">
-            <article class="step-card">
-              <div class="step-number">1</div>
-              <h3>Escríbenos</h3>
-              <p>Te respondemos por WhatsApp con la información que necesitas.</p>
-            </article>
-
-            <article class="step-card">
-              <div class="step-number">2</div>
-              <h3>Mostramos opciones</h3>
-              <p>Te guiamos según tu presupuesto y tus necesidades de uso.</p>
-            </article>
-
-            <article class="step-card">
-              <div class="step-number">3</div>
-              <h3>Revisamos juntos</h3>
-              <p>Analizamos documentos, estado del vehículo y condiciones reales.</p>
-            </article>
-
-            <article class="step-card">
-              <div class="step-number">4</div>
-              <h3>Te llevas el auto</h3>
-              <p>Nos aseguramos de que la compra sea clara y transparente.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="porque-confiar">
-        <div class="container">
-          <div class="section-head">
-            <h2>Por qué confiar en Tejada Auto Sales</h2>
-            <p>La confianza es la base. En Tejada Auto Sales priorizamos la transparencia y la atención real.</p>
-          </div>
-
-          <div class="why-grid">
-            <article class="why-card">
-              <h3>Estado mecánico</h3>
-              <p>Revisamos cada vehículo antes de ofrecerlo para que puedas comprar con más calma.</p>
-            </article>
-
-            <article class="why-card">
-              <h3>Papeles</h3>
-              <p>La documentación y la información del auto se revisan con atención antes de la venta.</p>
-            </article>
-
-            <article class="why-card">
-              <h3>Garantía</h3>
-              <p>Se brinda una experiencia de venta pensada para que el cliente se sienta respaldado.</p>
-            </article>
-
-            <article class="why-card">
-              <h3>Financiamiento</h3>
-              <p>Consultá por opciones de financiamiento y planes que se adapten a tu realidad.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="nosotros">
+      <section class="section about" id="tejada" aria-labelledby="about-title">
         <div class="container about-grid">
-          <div class="about-photo">
-            <div class="placeholder-photo">FOTO REAL: [COMPLETAR: dueño o equipo del negocio]</div>
+          <div class="about-copy">
+            <h2 id="about-title">Atención local. Compra sin apuro.</h2>
+            <p>
+              Tejada Auto Sales es un concesionario de autos usados en Dover, Delaware. Michael Tejada acompaña a
+              los compradores para que puedan hacer preguntas y revisar sus opciones con claridad.
+            </p>
           </div>
 
-          <div class="about-card">
-            <h2>Quiénes somos</h2>
-            <p>
-              Tejada Auto Sales está ubicado en Dover, Delaware, y se enfoca en ofrecer opciones de autos usados con
-              atención cercana y clara.
-            </p>
-            <p>
-              Michael Tejada atiende a los clientes y guía la venta con foco en la confianza y la tranquilidad del
-              comprador.
-            </p>
-            <p>
-              [COMPLETAR: historia breve del negocio y año de fundación].
-            </p>
+          <div class="about-detail">
+            <p><strong>Antes de elegir:</strong> solicita los detalles de documentación, revisión y condiciones de garantía.</p>
+            <p><strong>Financiamiento:</strong> consulta directamente qué opciones están disponibles para ti.</p>
+            <p><strong>Horario:</strong> lunes a sábado, de 10:00 a 18:00.</p>
           </div>
         </div>
       </section>
 
-      <section class="section" id="faq">
-        <div class="container">
-          <div class="section-head">
-            <h2>Preguntas frecuentes</h2>
-          </div>
+      <section class="section faq" id="preguntas" aria-labelledby="faq-title">
+        <div class="container faq-grid">
+          <h2 id="faq-title">Antes de venir, quizá te preguntas.</h2>
 
-          <div class="faq-grid">
-            <article class="faq-card">
-              <div class="faq-question">¿Los autos tienen papeles al día?</div>
-              <p>Sí, revisamos la documentación antes de vender y te informamos con claridad.</p>
-            </article>
-
-            <article class="faq-card">
-              <div class="faq-question">¿Los vehículos están revisados?</div>
-              <p>Antes de ofrecer un auto, se realiza una revisión mecánica y se evalúa su estado general.</p>
-            </article>
-
-            <article class="faq-card">
-              <div class="faq-question">¿Puedo pagar con financiamiento?</div>
-              <p>Consultá por opciones de financiamiento y te ayudamos a evaluar la mejor alternativa.</p>
-            </article>
-
-            <article class="faq-card">
-              <div class="faq-question">¿Puedo ver el auto antes de comprar?</div>
-              <p>Sí, podés coordinar una visita y revisar el vehículo antes de tomar la decisión.</p>
-            </article>
+          <div class="faq-list">
+            <details>
+              <summary>¿Qué autos están disponibles?</summary>
+              <p>El inventario cambia. Escríbenos o llámanos para confirmar las opciones actuales.</p>
+            </details>
+            <details>
+              <summary>¿Puedo preguntar por la documentación?</summary>
+              <p>Sí. Consulta por los documentos y detalles del vehículo antes de coordinar una visita.</p>
+            </details>
+            <details>
+              <summary>¿Hay opciones de financiamiento?</summary>
+              <p>Contacta al equipo para consultar qué opciones están disponibles y conocer sus condiciones.</p>
+            </details>
+            <details>
+              <summary>¿Puedo ver el auto antes de comprar?</summary>
+              <p>Comunícate para confirmar disponibilidad y coordinar una visita al local en Dover.</p>
+            </details>
           </div>
         </div>
       </section>
 
-      <section class="section" id="ubicacion">
+      <section class="section location" id="ubicacion" aria-labelledby="location-title">
         <div class="container">
-          <div class="section-head">
-            <h2>Visítanos</h2>
+          <div class="location-heading">
+            <h2 id="location-title">Dover es el punto de encuentro.</h2>
+            <p>Encuéntranos en Dupont Highway. Llama antes de venir para confirmar disponibilidad y horario.</p>
           </div>
 
-          <div class="contact-grid">
-            <div class="map-card">
-              <div class="map-placeholder">
-                <div style="padding: 1rem; text-align: center;">
-                  <strong style="display: block; margin-bottom: 0.5rem; color: var(--navy-900);">Tejada Auto Sales</strong>
-                  <span>4024N Dupont Hwy, Dover, DE 19901</span>
-                  <div style="margin-top: 0.9rem;">
-                    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901" target="_blank" rel="noopener noreferrer">Abrir en Google Maps</a>
-                  </div>
-                </div>
-              </div>
+          <div class="location-grid">
+            <div class="map-frame">
+              <iframe
+                title="Mapa de Tejada Auto Sales en Dover, Delaware"
+                src="https://maps.google.com/maps?q=4024N%20Dupont%20Hwy%2C%20Dover%2C%20DE%2019901&z=14&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
             </div>
 
-            <div class="contact-card">
-              <h3>Contacto</h3>
-              <p>Tejada Auto Sales</p>
-              <ul class="contact-list">
-                <li><span class="dot" aria-hidden="true"></span> <a href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901" target="_blank" rel="noopener noreferrer">4024N Dupont Hwy, Dover, DE 19901</a></li>
-                <li><span class="dot" aria-hidden="true"></span> <a href="tel:+13022002071">+1 (302) 200-2071</a></li>
-                <li><span class="dot" aria-hidden="true"></span> Lunes a sábado, 10:00 a 18:00</li>
-              </ul>
-              <div class="cta-row" style="margin-top: 1rem;">
-                <a class="btn" href="https://wa.me/13022002071?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20un%20auto%20usado%20en%20Dover." target="_blank" rel="noopener noreferrer" data-cta="ubicacion">Escribir por WhatsApp</a>
-                <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901" target="_blank" rel="noopener noreferrer" data-cta="maps">Cómo llegar</a>
+            <div class="location-info">
+              <h3>Tejada Auto Sales</h3>
+              <address>4024N Dupont Hwy<br />Dover, DE 19901</address>
+              <p>Lunes a sábado<br />10:00 a 18:00</p>
+              <div class="location-actions">
+                <a
+                  class="button"
+                  href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta="directions"
+                >
+                  Cómo llegar
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
+                  </svg>
+                </a>
+                <a class="button-secondary" href="tel:+13022002071" data-cta="location-call">Llamar</a>
               </div>
             </div>
           </div>
+
+          <div class="local-views" aria-label="Vistas de Dover y sus alrededores">
+            <figure>
+              <img
+                src="assets/route-13-water-street.jpg"
+                alt="Vista de la ruta alterna de U.S. 13 cerca de Water Street, Dover"
+                width="1920"
+                height="1440"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>U.S. 13 Alternate · Water Street</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/loockerman-street.jpg"
+                alt="Loockerman Street en Dover, con árboles y comercios locales"
+                width="1920"
+                height="1440"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Loockerman Street · Dover</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/dover-green.jpg"
+                alt="Edificios históricos junto al Dover Green"
+                width="1920"
+                height="934"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Dover Green · centro histórico</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" aria-labelledby="final-cta-title">
+        <div class="container final-cta-inner">
+          <div>
+            <h2 id="final-cta-title">Tu próxima ruta empieza con una pregunta.</h2>
+            <p>Cuéntanos qué buscas. Tejada Auto Sales está en Dover, Delaware.</p>
+          </div>
+          <a
+            class="button"
+            href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles%20en%20Dover."
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cta="final"
+          >
+            Escribir por WhatsApp
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+          </a>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="container footer-grid">
-        <div class="footer-col">
-          <h3>Tejada Auto Sales</h3>
-          <p>Autos usados en Dover, DE con atención cercana, revisión y tranquilidad.</p>
-        </div>
-
-        <div class="footer-col">
-          <h3>Contacto</h3>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-main">
+          <div class="footer-brand">Tejada Auto Sales<br />Dover, Delaware</div>
           <div class="footer-links">
             <a href="tel:+13022002071">+1 (302) 200-2071</a>
-            <a href="https://wa.me/13022002071?text=Hola%2C%20vi%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer">WhatsApp</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Cómo llegar</a>
           </div>
         </div>
 
-        <div class="footer-col">
-          <h3>Legal</h3>
-          <div class="footer-links">
-            <a href="#">Política de privacidad</a>
-            <a href="#">Términos y condiciones</a>
-            <a href="#">Aviso legal</a>
-          </div>
+        <div class="photo-credits">
+          <p>Fotografías de lugares de Dover y Delaware:</p>
+          <p>
+            <a href="https://commons.wikimedia.org/w/index.php?curid=15619156" target="_blank" rel="noopener noreferrer">U.S. 13 ALT junto a Silver Lake</a>,
+            Dough4872, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a>;
+            <a href="https://commons.wikimedia.org/w/index.php?curid=69352739" target="_blank" rel="noopener noreferrer">U.S. 13 ALT cerca de Water Street</a>,
+            Dough4872, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>;
+            <a href="https://commons.wikimedia.org/w/index.php?curid=120807914" target="_blank" rel="noopener noreferrer">Loockerman Street</a>,
+            Famartin, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>;
+            <a href="https://commons.wikimedia.org/w/index.php?curid=38042473" target="_blank" rel="noopener noreferrer">Dover Green</a>,
+            Ken Lund, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>.
+          </p>
+        </div>
+
+        <div class="copyright">
+          <span>© 2026 Tejada Auto Sales</span>
+          <span>Inventario sujeto a disponibilidad. Confirma los detalles antes de visitar.</span>
         </div>
       </div>
-
-      <div class="container legal-note">Los precios son referenciales y están sujetos a disponibilidad.</div>
     </footer>
 
     <a
-      href="https://wa.me/13022002071?text=Hola%2C%20vi%20su%20web%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n."
       class="floating-whatsapp"
+      href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles%20en%20Dover."
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Enviar mensaje a Tejada Auto Sales por WhatsApp"
       data-cta="floating"
-      aria-label="Enviar mensaje por WhatsApp"
     >
-      WhatsApp
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path
+          d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M11.7 10.2c-.3-.6-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.5 4 6.1 5.4 3 .9 3.6.7 4.3.6.7-.1 2.3-.9 2.6-1.8.3-.9.3-1.6.2-1.8-.1-.2-.3-.3-.7-.5l-2.5-1.2c-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.7.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7l-1.1-2.4Z"
+          fill="currentColor"
+        />
+      </svg>
     </a>
 
     <script>
-      // Preparado para Google Analytics 4 / Meta Pixel.
-      // Configurar IDs reales y políticas de privacidad antes de activar seguimiento.
-      // window.dataLayer = window.dataLayer || [];
-      // function gtag(){ dataLayer.push(arguments); }
-      // gtag('config', 'G-XXXXXXX');
+      const vehicleInterest = document.querySelector("#vehicle-interest");
+      const inventoryLink = document.querySelector("#inventory-whatsapp");
 
-      document.querySelectorAll('[data-cta]').forEach((button) => {
-        button.addEventListener('click', () => {
-          const origin = button.getAttribute('data-cta');
-          // Ready for event tracking: analytics event "clic_whatsapp" with parameter "origin"
-          // if (window.gtag) gtag('event', 'clic_whatsapp', { origin });
-        });
+      vehicleInterest.addEventListener("change", () => {
+        const message = `Hola, quiero consultar por ${vehicleInterest.value} disponible en Dover.`;
+        inventoryLink.href = `https://wa.me/13022002071?text=${encodeURIComponent(message)}`;
       });
     </script>
   </body>
