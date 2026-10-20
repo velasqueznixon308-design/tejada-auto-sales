@@ -17,6 +17,12 @@
     <meta property="og:image" content="https://tejada-auto-sales.vercel.app/assets/tejadas-logo-transparent.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f4f2e9" />
+    <script>
+      window.siteLanguage = (navigator.languages?.[0] || navigator.language || "en").toLowerCase().startsWith("es")
+        ? "es"
+        : "en";
+      document.documentElement.lang = window.siteLanguage;
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -95,10 +101,7 @@
       }
 
       .site-header {
-        position: absolute;
-        inset: 0 0 auto;
-        z-index: 5;
-        color: var(--ink);
+        background: var(--paper);
       }
 
       .header-inner {
@@ -184,102 +187,88 @@
       }
 
       .hero {
-        position: relative;
-        min-height: 760px;
-        height: 100svh;
-        overflow: hidden;
-      }
-
-      .hero-top,
-      .hero-bottom {
-        position: absolute;
-        inset-inline: 0;
-        height: 50%;
-      }
-
-      .hero-top {
-        inset-block-start: 0;
-        background: var(--paper);
-      }
-
-      .hero-bottom {
-        inset-block-end: 0;
-        background: var(--blue);
-      }
-
-      .hero-title {
-        position: absolute;
-        z-index: 1;
-        inset-inline: var(--page-gutter);
-        top: 48%;
         width: min(var(--page-width), calc(100% - var(--page-gutter) * 2));
-        margin: 0 auto;
-        transform: translateY(-50%);
-        font-size: clamp(4.5rem, 10.5vw, 9.1rem);
-        font-weight: 500;
-        letter-spacing: -0.075em;
-        line-height: 0.82;
+        min-height: min(670px, calc(100svh - 112px));
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        align-items: center;
+        gap: clamp(2rem, 4vw, 4rem);
+        margin: 0 auto clamp(5.5rem, 12vw, 10.5rem);
+        padding-block: clamp(2rem, 5vw, 4.5rem);
+      }
+
+      .hero-copy {
+        padding-block: 1rem;
+      }
+
+      .hero-eyebrow,
+      .customers-eyebrow {
+        margin: 0 0 1.1rem;
+        color: var(--blue-dark);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      .hero-line {
+      .hero-title {
+        max-width: 10ch;
+        margin: 0;
+        font-size: clamp(3.7rem, 2.2rem + 4.5vw, 6.25rem);
+        font-weight: 500;
+        letter-spacing: -0.075em;
+        line-height: 0.9;
+      }
+
+      .hero-description {
+        max-width: 38ch;
+        margin: 1.5rem 0 0;
+        color: var(--text-muted);
+        font-size: var(--step-lead);
+      }
+
+      .hero-actions {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        width: max-content;
-        max-width: 100%;
-        white-space: nowrap;
+        gap: 1rem 1.5rem;
+        margin-top: 2rem;
       }
 
-      .hero-line:first-child {
-        color: var(--blue-dark);
+      .hero-directions {
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
       }
 
-      .hero-line:last-child {
-        margin-top: 0.08em;
-        color: var(--ink);
-      }
-
-      .hero-photo {
-        width: 2.5em;
-        height: 0.74em;
-        margin-inline: 0.12em 0.2em;
+      .hero-visual {
+        position: relative;
+        height: clamp(420px, 43vw, 600px);
         overflow: hidden;
-        flex: 0 0 auto;
+        background: #d8e1e5;
       }
 
-      .hero-photo img {
+      .hero-visual img {
         width: 100%;
         height: 100%;
+        position: absolute;
+        inset: 0;
         object-fit: cover;
-        object-position: center 59%;
+        object-position: center 48%;
       }
 
-      .hero-note {
+      .hero-badge {
         position: absolute;
-        z-index: 2;
-        inset-inline-start: max(var(--page-gutter), calc((100% - var(--page-width)) / 2));
-        bottom: clamp(2rem, 8vh, 6rem);
-        width: min(560px, calc(100% - var(--page-gutter) * 2));
-        color: var(--white);
-      }
-
-      .hero-note p {
-        max-width: 46ch;
-        margin: 0 0 1.35rem;
-        font-size: var(--step-lead);
-        line-height: 1.28;
-      }
-
-      .hero-address {
-        position: absolute;
-        right: var(--page-gutter);
-        bottom: clamp(2.4rem, 8vh, 6.4rem);
-        margin: 0;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        padding: 0.7rem 1rem;
+        background: var(--white);
         color: var(--ink);
-        font-size: 0.85rem;
+        font-size: 0.78rem;
         font-weight: 600;
         letter-spacing: 0.08em;
-        text-align: right;
         text-transform: uppercase;
       }
 
@@ -583,31 +572,49 @@
         background: #e5e2d7;
       }
 
-      .local-views {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr 1fr;
-        gap: 1rem;
-        margin-top: clamp(3rem, 7vw, 6rem);
+      .customers {
+        background: var(--white);
       }
 
-      .local-views figure {
+      .customers-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: clamp(2rem, 5vw, 4rem);
+      }
+
+      .customers-heading p {
+        max-width: 38ch;
+        color: var(--text-muted);
+        font-size: var(--step-lead);
+      }
+
+      .customer-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(1rem, 2vw, 1.75rem);
+      }
+
+      .customer-gallery figure {
         margin: 0;
       }
 
-      .local-views img {
+      .customer-gallery img {
         width: 100%;
-        height: clamp(160px, 20vw, 280px);
+        aspect-ratio: 0.86;
         object-fit: cover;
       }
 
-      .local-views figure:nth-child(2) img {
-        object-position: center 52%;
+      .customer-gallery figure:first-child img {
+        object-position: center 55%;
       }
 
-      .local-views figcaption {
-        margin-top: 0.65rem;
+      .customer-gallery figcaption {
+        margin-top: 0.85rem;
         color: var(--text-muted);
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        font-weight: 500;
       }
 
       .final-cta {
@@ -744,14 +751,6 @@
         border: 0;
       }
 
-      @media (min-width: 1440px) {
-        .hero-title {
-          left: 50%;
-          right: auto;
-          transform: translate(-50%, -50%);
-        }
-      }
-
       @media (max-width: 900px) {
         .header-inner {
           gap: 1.25rem;
@@ -811,52 +810,31 @@
           font-size: 0.88rem;
         }
 
-        .hero {
-          min-height: 690px;
-          height: 100svh;
-          max-height: 900px;
-        }
-
         .hero-title {
-          top: 48%;
-          inset-inline: var(--page-gutter);
-          width: calc(100% - var(--page-gutter) * 2);
-          font-size: clamp(3.4rem, 13.5vw, 5.7rem);
+          font-size: clamp(3.2rem, 10vw, 5.7rem);
           letter-spacing: -0.08em;
-          line-height: 0.86;
+          line-height: 0.92;
         }
 
-        .hero-line {
-          white-space: normal;
+        .hero {
+          min-height: 0;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding-block: 2rem 0;
         }
 
-        .hero-line:first-child {
-          max-width: 100%;
+        .hero-copy {
+          padding-block: 0;
         }
 
-        .hero-photo {
-          width: 2.2em;
-          height: 0.76em;
-          margin-inline: 0.08em;
+        .hero-visual {
+          height: auto;
+          min-height: 0;
+          aspect-ratio: 0.98;
         }
 
-        .hero-note {
-          bottom: 4.3rem;
-          width: calc(100% - var(--page-gutter) * 2);
-        }
-
-        .hero-note p {
-          max-width: 36ch;
-          margin-bottom: 1rem;
-          font-size: 1.12rem;
-        }
-
-        .hero-note .button {
-          min-height: 48px;
-        }
-
-        .hero-address {
-          display: none;
+        .hero-actions {
+          margin-top: 1.5rem;
         }
 
         .inventory-grid,
@@ -906,22 +884,26 @@
           min-height: 320px;
         }
 
-        .local-views {
-          grid-template-columns: 1fr 1fr;
-          gap: 1.25rem 0.75rem;
-          margin-top: 3rem;
+        .customers-heading {
+          display: block;
         }
 
-        .local-views figure:first-child {
+        .customers-heading p {
+          margin-top: 1rem;
+        }
+
+        .customer-gallery {
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem 0.75rem;
+        }
+
+        .customer-gallery figure:last-child {
           grid-column: 1 / -1;
         }
 
-        .local-views img {
-          height: 180px;
-        }
-
-        .local-views figure:first-child img {
-          height: 230px;
+        .customer-gallery figure:last-child img {
+          max-height: 380px;
+          object-position: center 56%;
         }
 
         .final-cta-inner {
@@ -983,15 +965,16 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#inicio" aria-label="Tejada Auto Sales, inicio">
+        <a class="brand" href="#inicio" aria-label="Tejada Auto Sales, inicio" data-i18n-aria-label="brandAria">
           <img src="assets/tejadas-logo-transparent.png" alt="Tejada Auto Sales" width="1774" height="887" />
         </a>
 
-        <nav class="main-nav" aria-label="Navegación principal">
-          <a href="#autos">Autos</a>
-          <a href="#proceso">Cómo comprar</a>
-          <a href="#ubicacion">Ubicación</a>
-          <a href="#preguntas">Preguntas</a>
+        <nav class="main-nav" aria-label="Navegación principal" data-i18n-aria-label="navLabel">
+          <a href="#autos" data-i18n="navCars">Autos</a>
+          <a href="#proceso" data-i18n="navProcess">Cómo comprar</a>
+          <a href="#clientes" data-i18n="navCustomers">Clientes</a>
+          <a href="#ubicacion" data-i18n="navLocation">Ubicación</a>
+          <a href="#preguntas" data-i18n="navQuestions">Preguntas</a>
         </nav>
 
         <a
@@ -1000,6 +983,7 @@
           target="_blank"
           rel="noopener noreferrer"
           data-cta="header"
+          data-whatsapp-message="general"
         >
           <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <path
@@ -1013,71 +997,69 @@
               fill="currentColor"
             />
           </svg>
-          WhatsApp
+          <span data-i18n="whatsapp">WhatsApp</span>
         </a>
       </div>
     </header>
 
     <main id="inicio">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-top" aria-hidden="true"></div>
-        <div class="hero-bottom" aria-hidden="true"></div>
-
-        <h1 class="hero-title" id="hero-title">
-          <span class="hero-line">
-            Tu
-            <span class="hero-photo">
-              <img
-                src="assets/route-13-silver-lake.jpg"
-                alt="ruta por Dover"
-                width="1920"
-                height="1440"
-                fetchpriority="high"
-              />
-            </span>
-          </span>
-          <span class="hero-line">empieza aquí.</span>
-        </h1>
-
-        <div class="hero-note container">
-          <p>Autos usados en Dover, Delaware. Consulta qué hay disponible y encuentra el camino que sigue.</p>
-          <a
-            class="button"
-            href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles%20en%20Dover."
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cta="hero"
-          >
-            Consultar inventario
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
-            </svg>
-          </a>
+        <div class="hero-copy">
+          <p class="hero-eyebrow" data-i18n="heroEyebrow">Tejada Auto Sales · Dover, Delaware</p>
+          <h1 class="hero-title" id="hero-title" data-i18n="heroTitle">Tu próximo auto empieza aquí.</h1>
+          <p class="hero-description" data-i18n="heroDescription">
+            Autos usados y atención local. Cuéntanos qué buscas y te ayudamos a conocer las opciones disponibles.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://wa.me/13022002071?text=Hola%2C%20quiero%20consultar%20por%20los%20autos%20disponibles%20en%20Dover."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cta="hero"
+              data-whatsapp-message="general"
+            >
+              <span data-i18n="heroCta">Consultar inventario</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </a>
+            <a class="hero-directions" href="#ubicacion" data-i18n="heroDirections">Ver ubicación</a>
+          </div>
         </div>
-
-        <p class="hero-address">4024N Dupont Hwy · Dover, DE</p>
+        <div class="hero-visual">
+          <img
+            src="assets/happy-customers-03.jpg"
+            alt="Clientes con su auto frente a Tejada Auto Sales"
+            width="720"
+            height="960"
+            fetchpriority="high"
+            data-i18n-alt="heroPhotoAlt"
+          />
+          <span class="hero-badge" data-i18n="heroBadge">Dover, Delaware</span>
+        </div>
       </section>
 
       <section class="section inventory" id="autos" aria-labelledby="inventory-title">
         <div class="container inventory-grid">
           <div class="inventory-copy">
-            <h2 id="inventory-title">El inventario cambia. Pregunta por lo que hay hoy.</h2>
-            <p>
+            <h2 id="inventory-title" data-i18n="inventoryTitle">El inventario cambia. Pregunta por lo que hay hoy.</h2>
+            <p data-i18n="inventoryDescription">
               Estamos actualizando los autos disponibles. Cuéntanos qué tipo de vehículo buscas y te compartimos
               las opciones actuales por WhatsApp.
             </p>
           </div>
 
           <form class="inquiry" id="inventory-inquiry">
-            <h3>Vamos al grano.</h3>
-            <p>Elige qué te interesa y enviaremos tu consulta lista para continuar por WhatsApp.</p>
-            <label for="vehicle-interest">¿Qué tipo de auto buscas?</label>
+            <h3 data-i18n="inquiryTitle">Vamos al grano.</h3>
+            <p data-i18n="inquiryDescription">Elige qué te interesa y enviaremos tu consulta lista para continuar por WhatsApp.</p>
+            <label for="vehicle-interest" data-i18n="vehicleLabel">¿Qué tipo de auto buscas?</label>
             <select id="vehicle-interest" name="vehicle-interest">
-              <option value="cualquier tipo de auto">Cualquier tipo</option>
-              <option value="un sedán">Sedán</option>
-              <option value="una SUV">SUV</option>
-              <option value="una pickup">Pickup</option>
-              <option value="explorar opciones">Aún estoy explorando</option>
+              <option value="any" data-i18n="vehicleAny">Cualquier tipo</option>
+              <option value="sedan" data-i18n="vehicleSedan">Sedán</option>
+              <option value="suv" data-i18n="vehicleSuv">SUV</option>
+              <option value="pickup" data-i18n="vehiclePickup">Pickup</option>
+              <option value="exploring" data-i18n="vehicleExploring">Aún estoy explorando</option>
             </select>
             <a
               class="button"
@@ -1086,13 +1068,14 @@
               target="_blank"
               rel="noopener noreferrer"
               data-cta="inventory"
+              data-whatsapp-message="inventory"
             >
-              Consultar opciones
+              <span data-i18n="inventoryCta">Consultar opciones</span>
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
               </svg>
             </a>
-            <small class="inquiry-note">La disponibilidad se confirma directamente con el equipo.</small>
+            <small class="inquiry-note" data-i18n="availabilityNote">La disponibilidad se confirma directamente con el equipo.</small>
           </form>
         </div>
       </section>
@@ -1100,8 +1083,8 @@
       <section class="section process" id="proceso" aria-labelledby="process-title">
         <div class="container process-grid">
           <div class="process-intro">
-            <h2 id="process-title">Una compra clara, paso a paso.</h2>
-            <p>
+            <h2 id="process-title" data-i18n="processTitle">Una compra clara, paso a paso.</h2>
+            <p data-i18n="processDescription">
               Reúne la información que necesitas, revisa las opciones y coordina una visita antes de decidir.
             </p>
           </div>
@@ -1109,20 +1092,20 @@
           <ol class="steps">
             <li>
               <div>
-                <h3>Cuéntanos qué necesitas</h3>
-                <p>Escríbenos con el tipo de auto que buscas y las preguntas que quieres resolver.</p>
+                <h3 data-i18n="stepOneTitle">Cuéntanos qué necesitas</h3>
+                <p data-i18n="stepOneDescription">Escríbenos con el tipo de auto que buscas y las preguntas que quieres resolver.</p>
               </div>
             </li>
             <li>
               <div>
-                <h3>Revisa los detalles</h3>
-                <p>Pregunta por disponibilidad, documentación, revisión mecánica y opciones de financiamiento.</p>
+                <h3 data-i18n="stepTwoTitle">Revisa los detalles</h3>
+                <p data-i18n="stepTwoDescription">Pregunta por disponibilidad, documentación, revisión mecánica y opciones de financiamiento.</p>
               </div>
             </li>
             <li>
               <div>
-                <h3>Coordina una visita</h3>
-                <p>Llama o escríbenos para confirmar los detalles y visitar el local en Dover.</p>
+                <h3 data-i18n="stepThreeTitle">Coordina una visita</h3>
+                <p data-i18n="stepThreeDescription">Llama o escríbenos para confirmar los detalles y visitar el local en Dover.</p>
               </div>
             </li>
           </ol>
@@ -1132,41 +1115,91 @@
       <section class="section about" id="tejada" aria-labelledby="about-title">
         <div class="container about-grid">
           <div class="about-copy">
-            <h2 id="about-title">Atención local. Compra sin apuro.</h2>
-            <p>
+            <h2 id="about-title" data-i18n="aboutTitle">Atención local. Compra sin apuro.</h2>
+            <p data-i18n="aboutDescription">
               Tejada Auto Sales es un concesionario de autos usados en Dover, Delaware. Michael Tejada acompaña a
               los compradores para que puedan hacer preguntas y revisar sus opciones con claridad.
             </p>
           </div>
 
           <div class="about-detail">
-            <p><strong>Antes de elegir:</strong> solicita los detalles de documentación, revisión y condiciones de garantía.</p>
-            <p><strong>Financiamiento:</strong> consulta directamente qué opciones están disponibles para ti.</p>
-            <p><strong>Horario:</strong> lunes a sábado, de 10:00 a 18:00.</p>
+            <p><strong data-i18n="beforeChoosing">Antes de elegir:</strong> <span data-i18n="beforeChoosingDescription">solicita los detalles de documentación, revisión y condiciones de garantía.</span></p>
+            <p><strong data-i18n="financing">Financiamiento:</strong> <span data-i18n="financingDescription">consulta directamente qué opciones están disponibles para ti.</span></p>
+            <p><strong data-i18n="hoursLabel">Horario:</strong> <span data-i18n="hoursDescription">lunes a sábado, de 10:00 a 18:00.</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section customers" id="clientes" aria-labelledby="customers-title">
+        <div class="container">
+          <div class="customers-heading">
+            <div>
+              <p class="customers-eyebrow" data-i18n="customersEyebrow">Momentos que nos encanta compartir</p>
+              <h2 id="customers-title" data-i18n="customersTitle">Clientes felices</h2>
+            </div>
+            <p data-i18n="customersDescription">Gracias a nuestros clientes por compartir estos momentos con Tejada Auto Sales.</p>
+          </div>
+          <div class="customer-gallery">
+            <figure>
+              <img
+                src="assets/happy-customers-01.jpg"
+                alt="Cliente junto a su vehículo en Tejada Auto Sales"
+                width="720"
+                height="960"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="customerPhotoOneAlt"
+              />
+              <figcaption data-i18n="customerPhotoOneCaption">Un nuevo auto y un gran momento.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/happy-customers-02.jpg"
+                alt="Cliente junto a un auto en Tejada Auto Sales"
+                width="720"
+                height="960"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="customerPhotoTwoAlt"
+              />
+              <figcaption data-i18n="customerPhotoTwoCaption">Acompañando a nuestros clientes.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/happy-customers-03.jpg"
+                alt="Pareja con su auto en Tejada Auto Sales"
+                width="720"
+                height="960"
+                loading="lazy"
+                decoding="async"
+                data-i18n-alt="customerPhotoThreeAlt"
+              />
+              <figcaption data-i18n="customerPhotoThreeCaption">Gracias por elegirnos.</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
       <section class="section faq" id="preguntas" aria-labelledby="faq-title">
         <div class="container faq-grid">
-          <h2 id="faq-title">Antes de venir, quizá te preguntas.</h2>
+          <h2 id="faq-title" data-i18n="faqTitle">Antes de venir, quizá te preguntas.</h2>
 
           <div class="faq-list">
             <details>
-              <summary>¿Qué autos están disponibles?</summary>
-              <p>El inventario cambia. Escríbenos o llámanos para confirmar las opciones actuales.</p>
+              <summary data-i18n="faqOneQuestion">¿Qué autos están disponibles?</summary>
+              <p data-i18n="faqOneAnswer">El inventario cambia. Escríbenos o llámanos para confirmar las opciones actuales.</p>
             </details>
             <details>
-              <summary>¿Puedo preguntar por la documentación?</summary>
-              <p>Sí. Consulta por los documentos y detalles del vehículo antes de coordinar una visita.</p>
+              <summary data-i18n="faqTwoQuestion">¿Puedo preguntar por la documentación?</summary>
+              <p data-i18n="faqTwoAnswer">Sí. Consulta por los documentos y detalles del vehículo antes de coordinar una visita.</p>
             </details>
             <details>
-              <summary>¿Hay opciones de financiamiento?</summary>
-              <p>Contacta al equipo para consultar qué opciones están disponibles y conocer sus condiciones.</p>
+              <summary data-i18n="faqThreeQuestion">¿Hay opciones de financiamiento?</summary>
+              <p data-i18n="faqThreeAnswer">Contacta al equipo para consultar qué opciones están disponibles y conocer sus condiciones.</p>
             </details>
             <details>
-              <summary>¿Puedo ver el auto antes de comprar?</summary>
-              <p>Comunícate para confirmar disponibilidad y coordinar una visita al local en Dover.</p>
+              <summary data-i18n="faqFourQuestion">¿Puedo ver el auto antes de comprar?</summary>
+              <p data-i18n="faqFourAnswer">Comunícate para confirmar disponibilidad y coordinar una visita al local en Dover.</p>
             </details>
           </div>
         </div>
@@ -1175,14 +1208,15 @@
       <section class="section location" id="ubicacion" aria-labelledby="location-title">
         <div class="container">
           <div class="location-heading">
-            <h2 id="location-title">Dover es el punto de encuentro.</h2>
-            <p>Encuéntranos en Dupont Highway. Llama antes de venir para confirmar disponibilidad y horario.</p>
+            <h2 id="location-title" data-i18n="locationTitle">Dover es el punto de encuentro.</h2>
+            <p data-i18n="locationDescription">Encuéntranos en Dupont Highway. Llama antes de venir para confirmar disponibilidad y horario.</p>
           </div>
 
           <div class="location-grid">
             <div class="map-frame">
               <iframe
                 title="Mapa de Tejada Auto Sales en Dover, Delaware"
+                data-i18n-title="mapTitle"
                 src="https://maps.google.com/maps?q=4024N%20Dupont%20Hwy%2C%20Dover%2C%20DE%2019901&z=14&output=embed"
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -1193,7 +1227,7 @@
             <div class="location-info">
               <h3>Tejada Auto Sales</h3>
               <address>4024N Dupont Hwy<br />Dover, DE 19901</address>
-              <p>Lunes a sábado<br />10:00 a 18:00</p>
+              <p><span data-i18n="locationHoursDays">Lunes a sábado</span><br /><span data-i18n="locationHoursTime">10:00 a 18:00</span></p>
               <div class="location-actions">
                 <a
                   class="button"
@@ -1202,59 +1236,24 @@
                   rel="noopener noreferrer"
                   data-cta="directions"
                 >
-                  Cómo llegar
+                  <span data-i18n="directionsCta">Cómo llegar</span>
                   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
                   </svg>
                 </a>
-                <a class="button-secondary" href="tel:+13022002071" data-cta="location-call">Llamar</a>
+                <a class="button-secondary" href="tel:+13022002071" data-cta="location-call" data-i18n="callCta">Llamar</a>
               </div>
             </div>
           </div>
 
-          <div class="local-views" aria-label="Vistas de Dover y sus alrededores">
-            <figure>
-              <img
-                src="assets/route-13-water-street.jpg"
-                alt="Vista de la ruta alterna de U.S. 13 cerca de Water Street, Dover"
-                width="1920"
-                height="1440"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>U.S. 13 Alternate · Water Street</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="assets/loockerman-street.jpg"
-                alt="Loockerman Street en Dover, con árboles y comercios locales"
-                width="1920"
-                height="1440"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Loockerman Street · Dover</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="assets/dover-green.jpg"
-                alt="Edificios históricos junto al Dover Green"
-                width="1920"
-                height="934"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Dover Green · centro histórico</figcaption>
-            </figure>
-          </div>
         </div>
       </section>
 
       <section class="final-cta" aria-labelledby="final-cta-title">
         <div class="container final-cta-inner">
           <div>
-            <h2 id="final-cta-title">Tu próxima ruta empieza con una pregunta.</h2>
-            <p>Cuéntanos qué buscas. Tejada Auto Sales está en Dover, Delaware.</p>
+            <h2 id="final-cta-title" data-i18n="finalTitle">Tu próximo auto empieza con una pregunta.</h2>
+            <p data-i18n="finalDescription">Cuéntanos qué buscas. Tejada Auto Sales está en Dover, Delaware.</p>
           </div>
           <a
             class="button"
@@ -1262,8 +1261,9 @@
             target="_blank"
             rel="noopener noreferrer"
             data-cta="final"
+            data-whatsapp-message="general"
           >
-            Escribir por WhatsApp
+            <span data-i18n="whatsappCta">Escribir por WhatsApp</span>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" />
             </svg>
@@ -1282,27 +1282,17 @@
               href="https://www.google.com/maps/search/?api=1&query=4024N+Dupont+Hwy+Dover+DE+19901"
               target="_blank"
               rel="noopener noreferrer"
-            >Cómo llegar</a>
+            data-i18n="footerDirections">Cómo llegar</a>
           </div>
         </div>
 
         <div class="photo-credits">
-          <p>Fotografías de lugares de Dover y Delaware:</p>
-          <p>
-            <a href="https://commons.wikimedia.org/w/index.php?curid=15619156" target="_blank" rel="noopener noreferrer">U.S. 13 ALT junto a Silver Lake</a>,
-            Dough4872, <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0</a>;
-            <a href="https://commons.wikimedia.org/w/index.php?curid=69352739" target="_blank" rel="noopener noreferrer">U.S. 13 ALT cerca de Water Street</a>,
-            Dough4872, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>;
-            <a href="https://commons.wikimedia.org/w/index.php?curid=120807914" target="_blank" rel="noopener noreferrer">Loockerman Street</a>,
-            Famartin, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>;
-            <a href="https://commons.wikimedia.org/w/index.php?curid=38042473" target="_blank" rel="noopener noreferrer">Dover Green</a>,
-            Ken Lund, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>.
-          </p>
+          <p data-i18n="photoCredit">Fotografías compartidas por clientes de Tejada Auto Sales.</p>
         </div>
 
         <div class="copyright">
           <span>© 2026 Tejada Auto Sales</span>
-          <span>Inventario sujeto a disponibilidad. Confirma los detalles antes de visitar.</span>
+          <span data-i18n="copyrightNote">Inventario sujeto a disponibilidad. Confirma los detalles antes de visitar.</span>
         </div>
       </div>
     </footer>
@@ -1314,6 +1304,8 @@
       rel="noopener noreferrer"
       aria-label="Enviar mensaje a Tejada Auto Sales por WhatsApp"
       data-cta="floating"
+      data-i18n-aria-label="floatingWhatsAppLabel"
+      data-whatsapp-message="general"
     >
       <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path
@@ -1330,13 +1322,217 @@
     </a>
 
     <script>
+      const translations = {
+        es: {
+          pageTitle: "Tejada Auto Sales | Autos usados en Dover, Delaware",
+          pageDescription: "Encuentra autos usados en Dover, Delaware. Consulta el inventario actual y visita Tejada Auto Sales en 4024N Dupont Hwy.",
+          socialDescription: "Consulta por autos disponibles y visita Tejada Auto Sales en Dover, Delaware.",
+          brandAria: "Tejada Auto Sales, inicio",
+          navLabel: "Navegación principal",
+          navCars: "Autos",
+          navProcess: "Cómo comprar",
+          navCustomers: "Clientes",
+          navLocation: "Ubicación",
+          navQuestions: "Preguntas",
+          whatsapp: "WhatsApp",
+          heroEyebrow: "Tejada Auto Sales · Dover, Delaware",
+          heroTitle: "Tu próximo auto empieza aquí.",
+          heroDescription: "Autos usados y atención local. Cuéntanos qué buscas y te ayudamos a conocer las opciones disponibles.",
+          heroCta: "Consultar inventario",
+          heroDirections: "Ver ubicación",
+          heroPhotoAlt: "Clientes con su auto frente a Tejada Auto Sales",
+          heroBadge: "Dover, Delaware",
+          inventoryTitle: "El inventario cambia. Pregunta por lo que hay hoy.",
+          inventoryDescription: "Estamos actualizando los autos disponibles. Cuéntanos qué tipo de vehículo buscas y te compartimos las opciones actuales por WhatsApp.",
+          inquiryTitle: "Vamos al grano.",
+          inquiryDescription: "Elige qué te interesa y enviaremos tu consulta lista para continuar por WhatsApp.",
+          vehicleLabel: "¿Qué tipo de auto buscas?",
+          vehicleAny: "Cualquier tipo",
+          vehicleSedan: "Sedán",
+          vehicleSuv: "SUV",
+          vehiclePickup: "Pickup",
+          vehicleExploring: "Aún estoy explorando",
+          inventoryCta: "Consultar opciones",
+          availabilityNote: "La disponibilidad se confirma directamente con el equipo.",
+          processTitle: "Una compra clara, paso a paso.",
+          processDescription: "Reúne la información que necesitas, revisa las opciones y coordina una visita antes de decidir.",
+          stepOneTitle: "Cuéntanos qué necesitas",
+          stepOneDescription: "Escríbenos con el tipo de auto que buscas y las preguntas que quieres resolver.",
+          stepTwoTitle: "Revisa los detalles",
+          stepTwoDescription: "Pregunta por disponibilidad, documentación, revisión mecánica y opciones de financiamiento.",
+          stepThreeTitle: "Coordina una visita",
+          stepThreeDescription: "Llama o escríbenos para confirmar los detalles y visitar el local en Dover.",
+          aboutTitle: "Atención local. Compra sin apuro.",
+          aboutDescription: "Tejada Auto Sales es un concesionario de autos usados en Dover, Delaware. Michael Tejada acompaña a los compradores para que puedan hacer preguntas y revisar sus opciones con claridad.",
+          beforeChoosing: "Antes de elegir:",
+          beforeChoosingDescription: "solicita los detalles de documentación, revisión y condiciones de garantía.",
+          financing: "Financiamiento:",
+          financingDescription: "consulta directamente qué opciones están disponibles para ti.",
+          hoursLabel: "Horario:",
+          hoursDescription: "lunes a sábado, de 10:00 a 18:00.",
+          customersEyebrow: "Momentos que nos encanta compartir",
+          customersTitle: "Clientes felices",
+          customersDescription: "Gracias a nuestros clientes por compartir estos momentos con Tejada Auto Sales.",
+          customerPhotoOneAlt: "Cliente junto a su vehículo en Tejada Auto Sales",
+          customerPhotoOneCaption: "Un nuevo auto y un gran momento.",
+          customerPhotoTwoAlt: "Cliente junto a un auto en Tejada Auto Sales",
+          customerPhotoTwoCaption: "Acompañando a nuestros clientes.",
+          customerPhotoThreeAlt: "Pareja con su auto en Tejada Auto Sales",
+          customerPhotoThreeCaption: "Gracias por elegirnos.",
+          faqTitle: "Antes de venir, quizá te preguntas.",
+          faqOneQuestion: "¿Qué autos están disponibles?",
+          faqOneAnswer: "El inventario cambia. Escríbenos o llámanos para confirmar las opciones actuales.",
+          faqTwoQuestion: "¿Puedo preguntar por la documentación?",
+          faqTwoAnswer: "Sí. Consulta por los documentos y detalles del vehículo antes de coordinar una visita.",
+          faqThreeQuestion: "¿Hay opciones de financiamiento?",
+          faqThreeAnswer: "Contacta al equipo para consultar qué opciones están disponibles y conocer sus condiciones.",
+          faqFourQuestion: "¿Puedo ver el auto antes de comprar?",
+          faqFourAnswer: "Comunícate para confirmar disponibilidad y coordinar una visita al local en Dover.",
+          locationTitle: "Dover es el punto de encuentro.",
+          locationDescription: "Encuéntranos en Dupont Highway. Llama antes de venir para confirmar disponibilidad y horario.",
+          mapTitle: "Mapa de Tejada Auto Sales en Dover, Delaware",
+          locationHoursDays: "Lunes a sábado",
+          locationHoursTime: "10:00 a 18:00",
+          directionsCta: "Cómo llegar",
+          callCta: "Llamar",
+          finalTitle: "Tu próximo auto empieza con una pregunta.",
+          finalDescription: "Cuéntanos qué buscas. Tejada Auto Sales está en Dover, Delaware.",
+          whatsappCta: "Escribir por WhatsApp",
+          footerDirections: "Cómo llegar",
+          photoCredit: "Fotografías compartidas por clientes de Tejada Auto Sales.",
+          copyrightNote: "Inventario sujeto a disponibilidad. Confirma los detalles antes de visitar.",
+          floatingWhatsAppLabel: "Enviar mensaje a Tejada Auto Sales por WhatsApp"
+        },
+        en: {
+          pageTitle: "Tejada Auto Sales | Used Cars in Dover, Delaware",
+          pageDescription: "Find used cars in Dover, Delaware. Ask about current inventory and visit Tejada Auto Sales at 4024N Dupont Hwy.",
+          socialDescription: "Ask about available cars and visit Tejada Auto Sales in Dover, Delaware.",
+          brandAria: "Tejada Auto Sales, home",
+          navLabel: "Main navigation",
+          navCars: "Cars",
+          navProcess: "How to buy",
+          navCustomers: "Customers",
+          navLocation: "Location",
+          navQuestions: "FAQs",
+          whatsapp: "WhatsApp",
+          heroEyebrow: "Tejada Auto Sales · Dover, Delaware",
+          heroTitle: "Your next car starts here.",
+          heroDescription: "Used cars and friendly local service. Tell us what you're looking for and we'll help you explore the available options.",
+          heroCta: "Ask about inventory",
+          heroDirections: "Get directions",
+          heroPhotoAlt: "Customers with their car outside Tejada Auto Sales",
+          heroBadge: "Dover, Delaware",
+          inventoryTitle: "Inventory changes. Ask what’s available today.",
+          inventoryDescription: "We’re updating our available cars. Tell us what kind of vehicle you’re looking for and we’ll share current options on WhatsApp.",
+          inquiryTitle: "Let’s get started.",
+          inquiryDescription: "Choose what you’re interested in and we’ll prepare a message for WhatsApp.",
+          vehicleLabel: "What kind of car are you looking for?",
+          vehicleAny: "Any type",
+          vehicleSedan: "Sedan",
+          vehicleSuv: "SUV",
+          vehiclePickup: "Pickup truck",
+          vehicleExploring: "I’m still exploring",
+          inventoryCta: "Ask about options",
+          availabilityNote: "Please confirm availability directly with our team.",
+          processTitle: "A clear buying process, step by step.",
+          processDescription: "Get the information you need, review your options, and arrange a visit before deciding.",
+          stepOneTitle: "Tell us what you need",
+          stepOneDescription: "Message us with the kind of car you’re looking for and any questions you’d like answered.",
+          stepTwoTitle: "Review the details",
+          stepTwoDescription: "Ask about availability, paperwork, mechanical inspections, and financing options.",
+          stepThreeTitle: "Plan a visit",
+          stepThreeDescription: "Call or message us to confirm the details and visit our Dover location.",
+          aboutTitle: "Local service. No need to rush.",
+          aboutDescription: "Tejada Auto Sales is a used car dealership in Dover, Delaware. Michael Tejada works with buyers so they can ask questions and review their options with clarity.",
+          beforeChoosing: "Before you choose:",
+          beforeChoosingDescription: "ask about paperwork, inspections, and warranty terms.",
+          financing: "Financing:",
+          financingDescription: "contact us directly to ask which options may be available to you.",
+          hoursLabel: "Hours:",
+          hoursDescription: "Monday to Saturday, 10:00 AM to 6:00 PM.",
+          customersEyebrow: "Moments we’re glad to share",
+          customersTitle: "Happy customers",
+          customersDescription: "Thank you to our customers for sharing these moments with Tejada Auto Sales.",
+          customerPhotoOneAlt: "Customer beside their vehicle at Tejada Auto Sales",
+          customerPhotoOneCaption: "A new car and a special moment.",
+          customerPhotoTwoAlt: "Customer standing beside a car at Tejada Auto Sales",
+          customerPhotoTwoCaption: "Here for our customers.",
+          customerPhotoThreeAlt: "Couple with their car at Tejada Auto Sales",
+          customerPhotoThreeCaption: "Thank you for choosing us.",
+          faqTitle: "Questions before you visit.",
+          faqOneQuestion: "What cars are available?",
+          faqOneAnswer: "Inventory changes. Message or call us to confirm current options.",
+          faqTwoQuestion: "Can I ask about the paperwork?",
+          faqTwoAnswer: "Yes. Ask about the vehicle’s documents and details before arranging a visit.",
+          faqThreeQuestion: "Are financing options available?",
+          faqThreeAnswer: "Contact our team to ask what options may be available and review their terms.",
+          faqFourQuestion: "Can I see the car before buying?",
+          faqFourAnswer: "Contact us to confirm availability and arrange a visit to our Dover location.",
+          locationTitle: "Dover is where we meet.",
+          locationDescription: "Find us on Dupont Highway. Please call before visiting to confirm availability and hours.",
+          mapTitle: "Map to Tejada Auto Sales in Dover, Delaware",
+          locationHoursDays: "Monday to Saturday",
+          locationHoursTime: "10:00 AM to 6:00 PM",
+          directionsCta: "Get directions",
+          callCta: "Call",
+          finalTitle: "Your next car starts with a question.",
+          finalDescription: "Tell us what you’re looking for. Tejada Auto Sales is in Dover, Delaware.",
+          whatsappCta: "Message us on WhatsApp",
+          footerDirections: "Get directions",
+          photoCredit: "Photos shared by Tejada Auto Sales customers.",
+          copyrightNote: "Inventory is subject to availability. Please confirm details before visiting.",
+          floatingWhatsAppLabel: "Message Tejada Auto Sales on WhatsApp"
+        }
+      };
+
+      const language = window.siteLanguage;
+      const pageTranslations = translations[language];
+      const languageText = (key) => pageTranslations[key];
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        element.textContent = languageText(element.dataset.i18n);
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        element.alt = languageText(element.dataset.i18nAlt);
+      });
+
+      document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+        element.title = languageText(element.dataset.i18nTitle);
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        element.setAttribute("aria-label", languageText(element.dataset.i18nAriaLabel));
+      });
+
+      document.title = languageText("pageTitle");
+      document.querySelector('meta[name="description"]').content = languageText("pageDescription");
+      document.querySelector('meta[property="og:title"]').content = languageText("pageTitle");
+      document.querySelector('meta[property="og:description"]').content = languageText("socialDescription");
+
+      const vehicleTypes = {
+        es: { any: "cualquier tipo de auto", sedan: "un sedán", suv: "una SUV", pickup: "una pickup", exploring: "explorar opciones" },
+        en: { any: "any type of car", sedan: "a sedan", suv: "an SUV", pickup: "a pickup truck", exploring: "explore my options" }
+      };
       const vehicleInterest = document.querySelector("#vehicle-interest");
       const inventoryLink = document.querySelector("#inventory-whatsapp");
 
-      vehicleInterest.addEventListener("change", () => {
-        const message = `Hola, quiero consultar por ${vehicleInterest.value} disponible en Dover.`;
-        inventoryLink.href = `https://wa.me/13022002071?text=${encodeURIComponent(message)}`;
-      });
+      const updateWhatsAppLinks = () => {
+        const generalMessage = language === "es"
+          ? "Hola, quiero consultar por los autos disponibles en Dover."
+          : "Hi, I’d like to ask about the cars available in Dover.";
+        document.querySelectorAll('[data-whatsapp-message="general"]').forEach((link) => {
+          link.href = `https://wa.me/13022002071?text=${encodeURIComponent(generalMessage)}`;
+        });
+
+        const vehicleMessage = language === "es"
+          ? `Hola, quiero consultar por ${vehicleTypes.es[vehicleInterest.value]} disponible en Dover.`
+          : `Hi, I’d like to ask about ${vehicleTypes.en[vehicleInterest.value]} available in Dover.`;
+        inventoryLink.href = `https://wa.me/13022002071?text=${encodeURIComponent(vehicleMessage)}`;
+      };
+
+      vehicleInterest.addEventListener("change", updateWhatsAppLinks);
+      updateWhatsAppLinks();
     </script>
   </body>
 </html>
