@@ -26,22 +26,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         color-scheme: light;
-        --paper: #f4f2e9;
+        --paper: #f5f7f8;
         --white: #ffffff;
-        --ink: #091923;
-        --ink-soft: #163242;
+        --ink: #0c1823;
+        --ink-soft: #162635;
         --blue: #168fe5;
-        --blue-dark: #0c5f9c;
-        --green: #168c59;
-        --text-muted: #43515a;
-        --page-width: 1320px;
-        --page-gutter: clamp(1.25rem, 5vw, 5rem);
+        --blue-dark: #146ca7;
+        --text-muted: #586774;
+        --page-width: 1360px;
+        --page-gutter: clamp(1.25rem, 5vw, 4.5rem);
         --step-body: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
         --step-lead: clamp(1.2rem, 1.08rem + 0.65vw, 1.65rem);
         --step-heading: clamp(2.4rem, 1.35rem + 4vw, 5.25rem);
@@ -62,7 +61,7 @@
         margin: 0;
         background: var(--paper);
         color: var(--ink);
-        font-family: "Hanken Grotesk", Arial, sans-serif;
+        font-family: "DM Sans", Arial, sans-serif;
         font-size: var(--step-body);
         line-height: 1.5;
         overflow-x: hidden;
@@ -101,11 +100,14 @@
       }
 
       .site-header {
-        background: var(--paper);
+        position: relative;
+        z-index: 5;
+        background: var(--ink);
+        color: var(--white);
       }
 
       .header-inner {
-        min-height: 112px;
+        min-height: 96px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -114,9 +116,11 @@
 
       .brand {
         display: block;
-        width: 174px;
-        height: 87px;
+        width: 164px;
+        height: 76px;
         flex: 0 0 auto;
+        padding: 0.35rem 0.65rem;
+        background: var(--white);
       }
 
       .brand img {
@@ -137,11 +141,12 @@
       .main-nav a {
         font-size: 0.95rem;
         font-weight: 500;
+        color: #e5edf2;
         transition: color 160ms ease;
       }
 
       .main-nav a:hover {
-        color: var(--blue-dark);
+        color: #77c4f4;
       }
 
       .button {
@@ -152,7 +157,7 @@
         gap: 0.75rem;
         padding: 0.8rem 1.2rem;
         border: 0;
-        background: var(--green);
+        background: var(--blue-dark);
         color: var(--white);
         font-size: 1rem;
         font-weight: 600;
@@ -162,7 +167,7 @@
       }
 
       .button:hover {
-        background: #0f7147;
+        background: #0d5687;
         transform: translateY(-2px);
       }
 
@@ -181,73 +186,96 @@
       }
 
       .header-cta {
-        min-height: 46px;
-        padding-inline: 1rem;
+        min-height: 48px;
+        padding-inline: 1.2rem;
         font-size: 0.94rem;
       }
 
       .hero {
-        width: min(var(--page-width), calc(100% - var(--page-gutter) * 2));
-        min-height: min(670px, calc(100svh - 112px));
-        display: grid;
-        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        position: relative;
+        min-height: min(720px, calc(100svh - 96px));
+        display: flex;
         align-items: center;
-        gap: clamp(2rem, 4vw, 4rem);
-        margin: 0 auto clamp(5.5rem, 12vw, 10.5rem);
-        padding-block: clamp(2rem, 5vw, 4.5rem);
+        overflow: hidden;
+        padding: clamp(5rem, 8vw, 8rem) max(var(--page-gutter), calc((100% - var(--page-width)) / 2));
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .hero::after {
+        position: absolute;
+        z-index: 1;
+        inset: 0;
+        background: linear-gradient(90deg, #0c1823 0%, rgba(12, 24, 35, 0.98) 33%, rgba(12, 24, 35, 0.81) 48%, rgba(12, 24, 35, 0.2) 100%);
+        content: "";
+        pointer-events: none;
       }
 
       .hero-copy {
+        position: relative;
+        z-index: 2;
+        width: min(650px, 57%);
         padding-block: 1rem;
       }
 
       .hero-eyebrow,
       .customers-eyebrow {
-        margin: 0 0 1.1rem;
-        color: var(--blue-dark);
+        margin: 0 0 1.4rem;
+        color: #84ccff;
         font-size: 0.82rem;
         font-weight: 600;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
       }
 
       .hero-title {
-        max-width: 10ch;
+        max-width: 9ch;
         margin: 0;
-        font-size: clamp(3.7rem, 2.2rem + 4.5vw, 6.25rem);
-        font-weight: 500;
-        letter-spacing: -0.075em;
-        line-height: 0.9;
+        font-family: "Manrope", "DM Sans", sans-serif;
+        font-size: clamp(4rem, 3rem + 4vw, 7rem);
+        font-weight: 700;
+        letter-spacing: -0.065em;
+        line-height: 0.98;
       }
 
       .hero-description {
-        max-width: 38ch;
-        margin: 1.5rem 0 0;
-        color: var(--text-muted);
-        font-size: var(--step-lead);
+        max-width: 43ch;
+        margin: 1.35rem 0 0;
+        color: #d3dde4;
+        font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 1rem 1.5rem;
+        gap: 0.9rem;
         margin-top: 2rem;
       }
 
       .hero-directions {
+        min-height: 52px;
+        display: inline-flex;
+        align-items: center;
+        padding-inline: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: var(--white);
         font-size: 0.95rem;
         font-weight: 600;
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.2em;
+        transition: background-color 160ms ease, border-color 160ms ease;
+      }
+
+      .hero-directions:hover {
+        border-color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
       }
 
       .hero-visual {
-        position: relative;
-        height: clamp(420px, 43vw, 600px);
+        position: absolute;
+        z-index: 0;
+        inset: 0;
         overflow: hidden;
-        background: #d8e1e5;
+        background: var(--ink);
       }
 
       .hero-visual img {
@@ -256,33 +284,71 @@
         position: absolute;
         inset: 0;
         object-fit: cover;
-        object-position: center 48%;
+        object-position: 70% 48%;
       }
 
       .hero-badge {
         position: absolute;
-        right: 1.25rem;
-        bottom: 1.25rem;
-        padding: 0.7rem 1rem;
-        background: var(--white);
-        color: var(--ink);
-        font-size: 0.78rem;
+        z-index: 2;
+        right: max(var(--page-gutter), calc((100% - var(--page-width)) / 2));
+        bottom: 2rem;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+        color: var(--white);
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
+      .trust-strip {
+        background: var(--white);
+        border-bottom: 1px solid #e5eaed;
+      }
+
+      .trust-strip-inner {
+        width: min(var(--page-width), calc(100% - var(--page-gutter) * 2));
+        min-height: 92px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        margin-inline: auto;
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.75rem clamp(0.75rem, 2.5vw, 2rem);
+        color: var(--ink);
+        font-size: 0.93rem;
+        font-weight: 600;
+      }
+
+      .trust-item + .trust-item {
+        border-left: 1px solid #e1e7eb;
+      }
+
+      .trust-mark {
+        width: 9px;
+        height: 9px;
+        flex: 0 0 auto;
+        background: var(--blue);
+        border-radius: 50%;
+      }
+
       .section {
-        padding-block: clamp(5.5rem, 12vw, 10.5rem);
+        padding-block: clamp(5rem, 9vw, 8rem);
       }
 
       .section h2 {
         max-width: 12ch;
         margin: 0;
-        font-size: var(--step-heading);
-        font-weight: 500;
-        letter-spacing: -0.065em;
-        line-height: 0.96;
+        font-family: "Manrope", "DM Sans", sans-serif;
+        font-size: clamp(2.4rem, 1.7rem + 3.5vw, 4.8rem);
+        font-weight: 700;
+        letter-spacing: -0.055em;
+        line-height: 1.02;
       }
 
       .section p {
@@ -308,9 +374,10 @@
       }
 
       .inquiry {
-        padding: clamp(1.5rem, 4vw, 3rem);
+        padding: clamp(1.75rem, 4vw, 3.25rem);
         background: var(--ink);
         color: var(--white);
+        box-shadow: 0 22px 55px rgba(12, 24, 35, 0.12);
       }
 
       .inquiry h3 {
@@ -360,8 +427,8 @@
       }
 
       .process {
-        background: var(--ink);
-        color: var(--white);
+        background: #eaf2f7;
+        color: var(--ink);
       }
 
       .process-grid {
@@ -373,19 +440,32 @@
       .process-intro p {
         max-width: 38ch;
         margin-top: 1.5rem;
-        color: #d9e2e7;
+        color: var(--text-muted);
         font-size: var(--step-lead);
       }
 
       .steps {
+        counter-reset: buying-step;
         margin: 0;
         padding: 0;
         list-style: none;
       }
 
       .steps li {
-        display: block;
-        padding-block: 1.5rem;
+        display: grid;
+        grid-template-columns: 3rem 1fr;
+        gap: 1rem;
+        padding-block: 1.35rem;
+        border-bottom: 1px solid #d2dfe7;
+        counter-increment: buying-step;
+      }
+
+      .steps li::before {
+        color: var(--blue-dark);
+        content: "0" counter(buying-step);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
       }
 
       .steps h3 {
@@ -398,12 +478,12 @@
       .steps p {
         max-width: 48ch;
         margin-top: 0.45rem;
-        color: #d9e2e7;
+        color: var(--text-muted);
       }
 
       .about {
-        background: var(--blue);
-        color: var(--ink);
+        background: var(--ink);
+        color: var(--white);
       }
 
       .about-grid {
@@ -416,6 +496,7 @@
       .about-copy p {
         max-width: 48ch;
         margin-top: 1.5rem;
+        color: #d3dde4;
         font-size: var(--step-lead);
       }
 
@@ -425,6 +506,8 @@
 
       .about-detail p + p {
         margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
       }
 
       .about-detail strong {
@@ -449,6 +532,7 @@
 
       .faq-list details {
         padding-block: 1.25rem;
+        border-bottom: 1px solid #dbe2e6;
       }
 
       .faq-list summary {
@@ -485,7 +569,7 @@
       }
 
       .location {
-        background: var(--white);
+        background: var(--paper);
       }
 
       .location-heading {
@@ -514,6 +598,7 @@
         min-height: 390px;
         aspect-ratio: 1.35;
         background: #d8e1e5;
+        box-shadow: 0 18px 44px rgba(12, 24, 35, 0.1);
       }
 
       .map-frame iframe {
@@ -600,14 +685,32 @@
         margin: 0;
       }
 
-      .customer-gallery img {
+      .customer-photo {
         width: 100%;
         aspect-ratio: 0.86;
+        overflow: hidden;
+        background: #e5ebef;
+      }
+
+      .customer-gallery img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
+        transition: transform 300ms ease;
       }
 
       .customer-gallery figure:first-child img {
-        object-position: center 55%;
+        object-position: 65% center;
+        transform: scale(1.65);
+        transform-origin: 100% 48%;
+      }
+
+      .customer-gallery figure:hover img {
+        transform: scale(1.03);
+      }
+
+      .customer-gallery figure:first-child:hover img {
+        transform: scale(1.7);
       }
 
       .customer-gallery figcaption {
@@ -618,7 +721,7 @@
       }
 
       .final-cta {
-        padding-block: clamp(5rem, 12vw, 10rem);
+        padding-block: clamp(4rem, 8vw, 7rem);
         background: var(--ink);
         color: var(--white);
       }
@@ -682,7 +785,7 @@
       }
 
       .footer-links a:hover {
-        color: var(--blue);
+        color: #84ccff;
       }
 
       .photo-credits {
@@ -719,24 +822,25 @@
         z-index: 10;
         right: max(1.25rem, env(safe-area-inset-right));
         bottom: max(1.25rem, env(safe-area-inset-bottom));
-        width: 62px;
-        height: 62px;
+        width: 58px;
+        height: 58px;
         display: grid;
         place-items: center;
-        background: var(--green);
+        background: var(--blue-dark);
         color: var(--white);
         border-radius: 50%;
+        box-shadow: 0 8px 26px rgba(12, 24, 35, 0.22);
         transition: background-color 160ms ease, transform 160ms ease;
       }
 
       .floating-whatsapp:hover {
-        background: #0f7147;
+        background: #0d5687;
         transform: translateY(-3px);
       }
 
       .floating-whatsapp svg {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
       }
 
       .sr-only {
@@ -764,6 +868,14 @@
           font-size: 0.88rem;
         }
 
+        .hero {
+          min-height: 640px;
+        }
+
+        .hero-copy {
+          width: min(600px, 70%);
+        }
+
         .inventory-grid,
         .process-grid,
         .about-grid,
@@ -774,7 +886,7 @@
         }
       }
 
-      @media (max-width: 680px) {
+      @media (max-width: 760px) {
         :root {
           --page-gutter: 1.25rem;
         }
@@ -789,8 +901,9 @@
         }
 
         .brand {
-          width: 126px;
-          height: 63px;
+          width: 122px;
+          height: 58px;
+          padding: 0.25rem 0.45rem;
         }
 
         .main-nav {
@@ -811,30 +924,50 @@
         }
 
         .hero-title {
-          font-size: clamp(3.2rem, 10vw, 5.7rem);
-          letter-spacing: -0.08em;
-          line-height: 0.92;
+          font-size: clamp(3.4rem, 11vw, 5rem);
+        }
+
+        .hero::after {
+          background: linear-gradient(0deg, rgba(12, 24, 35, 0.99) 0%, rgba(12, 24, 35, 0.91) 48%, rgba(12, 24, 35, 0.25) 100%);
         }
 
         .hero {
-          min-height: 0;
-          grid-template-columns: 1fr;
-          gap: 2rem;
-          padding-block: 2rem 0;
+          min-height: 690px;
+          align-items: end;
+          padding: 4rem var(--page-gutter) 5rem;
         }
 
         .hero-copy {
+          width: 100%;
           padding-block: 0;
         }
 
         .hero-visual {
-          height: auto;
-          min-height: 0;
-          aspect-ratio: 0.98;
+          height: 100%;
         }
 
         .hero-actions {
           margin-top: 1.5rem;
+        }
+
+        .hero-badge {
+          right: var(--page-gutter);
+          bottom: 1.4rem;
+        }
+
+        .trust-strip-inner {
+          grid-template-columns: 1fr;
+          padding-block: 0.5rem;
+        }
+
+        .trust-item {
+          min-height: 54px;
+          padding-inline: 0;
+        }
+
+        .trust-item + .trust-item {
+          border-top: 1px solid #e1e7eb;
+          border-left: 0;
         }
 
         .inventory-grid,
@@ -902,8 +1035,11 @@
         }
 
         .customer-gallery figure:last-child img {
-          max-height: 380px;
           object-position: center 56%;
+        }
+
+        .customer-gallery figure:last-child .customer-photo {
+          max-height: 380px;
         }
 
         .final-cta-inner {
@@ -1040,6 +1176,14 @@
         </div>
       </section>
 
+      <section class="trust-strip" aria-label="Información de Tejada Auto Sales">
+        <div class="trust-strip-inner">
+          <div class="trust-item"><span class="trust-mark" aria-hidden="true"></span><span data-i18n="trustLocation">Concesionario local en Dover</span></div>
+          <div class="trust-item"><span class="trust-mark" aria-hidden="true"></span><span data-i18n="trustInventory">Opciones de autos usados</span></div>
+          <div class="trust-item"><span class="trust-mark" aria-hidden="true"></span><span data-i18n="trustContact">Atención directa por WhatsApp</span></div>
+        </div>
+      </section>
+
       <section class="section inventory" id="autos" aria-labelledby="inventory-title">
         <div class="container inventory-grid">
           <div class="inventory-copy">
@@ -1141,39 +1285,45 @@
           </div>
           <div class="customer-gallery">
             <figure>
-              <img
-                src="assets/happy-customers-01.jpg"
-                alt="Cliente junto a su vehículo en Tejada Auto Sales"
-                width="720"
-                height="960"
-                loading="lazy"
-                decoding="async"
-                data-i18n-alt="customerPhotoOneAlt"
-              />
+              <div class="customer-photo">
+                <img
+                  src="assets/happy-customers-01.jpg"
+                  alt="Cliente junto a su vehículo en Tejada Auto Sales"
+                  width="720"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="customerPhotoOneAlt"
+                />
+              </div>
               <figcaption data-i18n="customerPhotoOneCaption">Un nuevo auto y un gran momento.</figcaption>
             </figure>
             <figure>
-              <img
-                src="assets/happy-customers-02.jpg"
-                alt="Cliente junto a un auto en Tejada Auto Sales"
-                width="720"
-                height="960"
-                loading="lazy"
-                decoding="async"
-                data-i18n-alt="customerPhotoTwoAlt"
-              />
+              <div class="customer-photo">
+                <img
+                  src="assets/happy-customers-02.jpg"
+                  alt="Cliente junto a un auto en Tejada Auto Sales"
+                  width="720"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="customerPhotoTwoAlt"
+                />
+              </div>
               <figcaption data-i18n="customerPhotoTwoCaption">Acompañando a nuestros clientes.</figcaption>
             </figure>
             <figure>
-              <img
-                src="assets/happy-customers-03.jpg"
-                alt="Pareja con su auto en Tejada Auto Sales"
-                width="720"
-                height="960"
-                loading="lazy"
-                decoding="async"
-                data-i18n-alt="customerPhotoThreeAlt"
-              />
+              <div class="customer-photo">
+                <img
+                  src="assets/happy-customers-03.jpg"
+                  alt="Pareja con su auto en Tejada Auto Sales"
+                  width="720"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  data-i18n-alt="customerPhotoThreeAlt"
+                />
+              </div>
               <figcaption data-i18n="customerPhotoThreeCaption">Gracias por elegirnos.</figcaption>
             </figure>
           </div>
@@ -1342,6 +1492,9 @@
           heroDirections: "Ver ubicación",
           heroPhotoAlt: "Clientes con su auto frente a Tejada Auto Sales",
           heroBadge: "Dover, Delaware",
+          trustLocation: "Concesionario local en Dover",
+          trustInventory: "Opciones de autos usados",
+          trustContact: "Atención directa por WhatsApp",
           inventoryTitle: "El inventario cambia. Pregunta por lo que hay hoy.",
           inventoryDescription: "Estamos actualizando los autos disponibles. Cuéntanos qué tipo de vehículo buscas y te compartimos las opciones actuales por WhatsApp.",
           inquiryTitle: "Vamos al grano.",
@@ -1422,6 +1575,9 @@
           heroDirections: "Get directions",
           heroPhotoAlt: "Customers with their car outside Tejada Auto Sales",
           heroBadge: "Dover, Delaware",
+          trustLocation: "Your local Dover dealership",
+          trustInventory: "Used car options",
+          trustContact: "Talk with us on WhatsApp",
           inventoryTitle: "Inventory changes. Ask what’s available today.",
           inventoryDescription: "We’re updating our available cars. Tell us what kind of vehicle you’re looking for and we’ll share current options on WhatsApp.",
           inquiryTitle: "Let’s get started.",
